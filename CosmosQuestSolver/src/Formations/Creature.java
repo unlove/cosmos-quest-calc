@@ -7,7 +7,7 @@ import SpecialAbilities.SpecialAbility;
 import java.awt.Graphics;
 
 //has data and functions shared by all fighters. including monsters, heroes,
-//and world bosses
+//and world bosses.
 public abstract class Creature implements Comparable<Creature>{
     
     protected Element element;

@@ -61,15 +61,15 @@ public class ScaleableStatBoost extends StatBoost{
     public String getDescription() {
         String elementStr = "";
         if (element == null){
-            elementStr = "All";
+            elementStr = "all";
         }
         else{
             switch(element){//method for this?
-                case AIR: elementStr = "Air"; break;
-                case WATER: elementStr = "Water"; break;
-                case EARTH: elementStr = "Earth"; break;
-                case FIRE: elementStr = "Fire"; break;
-                default: elementStr = "All";
+                case AIR: elementStr = "air"; break;
+                case WATER: elementStr = "water"; break;
+                case EARTH: elementStr = "earth"; break;
+                case FIRE: elementStr = "fire"; break;
+                default: elementStr = "all";
             }
         }
         

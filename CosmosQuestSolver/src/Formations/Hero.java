@@ -139,6 +139,11 @@ public class Hero extends Creature implements Levelable{
     }
     
     @Override
+    public String toolTipText() {
+        return "<html>" + getName() + "<br>" + getSpecialAbility().getDescription() + "</html>";
+    }
+    
+    @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append(getName()).append(":\tAtt: ");

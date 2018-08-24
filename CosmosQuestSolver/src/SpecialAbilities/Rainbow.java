@@ -65,7 +65,7 @@ public class Rainbow extends SpecialAbility{
     
     @Override
     public String getDescription() {
-        return "+" + damageBoost + " attack when " + numTypesRequired + " types alive";
+        return "+" + damageBoost + " attack when " + numTypesRequired + " elemental types alive";
     }
     
     @Override

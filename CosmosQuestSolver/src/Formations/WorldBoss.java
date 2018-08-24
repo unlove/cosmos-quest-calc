@@ -94,6 +94,11 @@ public class WorldBoss extends Creature{
     }
     
     @Override
+    public String toolTipText() {
+        return "<html>" + getName() + "<br>Attack: " + getBaseAtt() + "<br>" + getSpecialAbility().getDescription() + "</html>";
+    }
+    
+    @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append(getName()).append(":\tAtt: ");

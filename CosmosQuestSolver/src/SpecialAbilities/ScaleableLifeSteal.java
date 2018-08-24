@@ -53,7 +53,7 @@ public class ScaleableLifeSteal extends LifeSteal{
             milestoneStr = Double.toString(levelMilestone);
         }
         
-        return "+" + amount + " aoe&heal every " + milestoneStr + " lvl";
+        return "+" + amount + " aoe & heal every " + milestoneStr + " lvl";
     }
     
     @Override

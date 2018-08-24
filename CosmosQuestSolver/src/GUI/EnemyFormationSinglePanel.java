@@ -81,11 +81,7 @@ public class EnemyFormationSinglePanel extends JPanel implements MouseListener{
     public void mouseEntered(MouseEvent e) {
         Creature creature = picPanel.getCreature();
         if (creature != null){
-        setToolTipText("<html>"
-                              + creature.getName()
-                              +"<br>"
-                              + creature.getSpecialAbility().getDescription()
-                              + "</html>");
+            setToolTipText(creature.toolTipText());
         }
     }
 

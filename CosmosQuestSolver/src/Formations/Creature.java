@@ -22,6 +22,7 @@ public abstract class Creature implements Comparable<Creature>{
     protected int ID;//for quicker copying. Copying names of heroes was not nessesary for fights. Names can be accesed through a method in CreatureFactory.
     
     protected boolean performedDeathAction = false;//put in specialAbility?
+
     
     public static enum Element {AIR,WATER,EARTH,FIRE}
     public static final double ELEMENT_DAMAGE_BOOST = 1.5;
@@ -43,6 +44,7 @@ public abstract class Creature implements Comparable<Creature>{
     public abstract long getFollowers();
     public abstract void draw(Graphics g);
     public abstract String getImageAddress();
+    public abstract String toolTipText();
     
     public String getName() {
         return CreatureFactory.getCreatureName(getID());

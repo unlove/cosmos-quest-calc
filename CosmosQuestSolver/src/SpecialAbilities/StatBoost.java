@@ -71,7 +71,7 @@ public class StatBoost extends SpecialAbility{
             sb.append("have +").append(armorBoost).append(" armor");
         }
         else if (attBoost != 0 && armorBoost != 0){
-            sb.append("+").append(attBoost).append(" attack and +").append(armorBoost).append(" armor");
+            sb.append("have +").append(attBoost).append(" attack and +").append(armorBoost).append(" armor");
         }
         else{//no boost
             return "";

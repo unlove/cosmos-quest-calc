@@ -35,7 +35,7 @@ public class AddAttack extends SpecialAbility{
     @Override
     public String getDescription() {
         if (amount > 0){
-            return "Gains +" + amount + " attack every turn";
+            return "Gains " + amount + " attack every turn";
         }
         else if (amount < 0){
             return "Loses " + -amount + " attack every turn";

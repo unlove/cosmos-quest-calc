@@ -1,17 +1,17 @@
-70418000
+71022000
 6
 Hunter,99,false,false
 Shaman,99,false,false
-Alpha,38,false,false
+Alpha,41,false,false
 Carl,99,false,false
 Nimue,99,false,false
-Athos,31,false,false
+Athos,36,false,false
 Jet,99,false,false
 Geron,99,false,false
-Rei,45,false,false
+Rei,47,false,false
 Ailen,99,false,false
 Faefyr,99,false,false
-Auri,29,false,false
+Auri,35,false,false
 K41RY,99,false,false
 T4URUS,99,false,false
 TR0N1X,99,true,false
@@ -20,25 +20,25 @@ Aeris,99,false,false
 Geum,99,false,false
 Rudean,99,false,false
 Aural,99,false,false
-Geror,30,false,false
+Geror,32,false,false
 Ourea,99,false,false
 Erebus,99,false,false
 Pontus,99,true,false
 Oymos,99,false,false
 Xarth,99,false,false
-Atzar,39,false,false
+Atzar,42,false,false
 Hama,99,false,false
 Hallinskidi,99,false,false
 Rigr,99,true,false
 Toth,99,false,false
 Ganah,99,false,false
-Dagda,37,false,false
+Dagda,38,false,false
 Bylar,99,false,false
 Boor,99,false,false
-Bavah,34,false,false
+Bavah,41,false,false
 Taint,99,false,false
 Putrid,99,false,false
-Defile,18,false,false
+Defile,21,false,false
 Ascended Alpha,1,false,false
 Ascended Athos,1,false,false
 Ascended Rei,1,false,false

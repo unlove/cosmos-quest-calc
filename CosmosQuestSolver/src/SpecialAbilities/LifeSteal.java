@@ -44,7 +44,7 @@ public class LifeSteal extends SpecialAbility{
     
     @Override
     public String getDescription() {
-        return "";
+        return "";//todo
     }
     
     @Override

@@ -82,11 +82,14 @@ public class CreaturePicturePanel extends JPanel implements MouseListener{//mous
     @Override
     public void mouseEntered(MouseEvent e) {
         if (creature != null){
+            setToolTipText(creature.toolTipText());
+            /*
         setToolTipText("<html>"
                               + creature.getName()
                               +"<br>"
                               + creature.getSpecialAbility().getDescription()
                               + "</html>");
+*/
         }
     }
 

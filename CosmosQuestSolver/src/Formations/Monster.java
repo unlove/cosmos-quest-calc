@@ -14,11 +14,9 @@ import java.awt.image.BufferedImage;
 
 public class Monster extends Creature {
 
-    public static final int TOTAL_UNIQUE_TIERS = 15;
-    public static final int REPEATS = 2;
-    public static final int TOTAL_TIERS = TOTAL_UNIQUE_TIERS * REPEATS;
-    
-    public static final String[] REPEAT_TIER_STRING = new String[]{"","Furious "};//prefex names are aready hard coded into creatureFactory. Repeat?
+    public static final int TOTAL_UNIQUE_TIERS = 15;//have all monster names in arrays in CreatureFactory?
+    public static final String[] REPEAT_TIER_STRING = new String[]{"","Furious "};
+    public static final int TOTAL_TIERS = TOTAL_UNIQUE_TIERS * REPEAT_TIER_STRING.length;
     
     private long followers;
     private int tier;
@@ -44,6 +42,10 @@ public class Monster extends Creature {
         return tier;
     }
     
+    public static int getNumTimesRepeat(){
+        return REPEAT_TIER_STRING.length;
+    }
+    
     @Override
     public int getID(){
         int elementNum = 0;
@@ -65,8 +67,13 @@ public class Monster extends Creature {
     public String getImageAddress() {
         int strIndex = (tier-1)/TOTAL_UNIQUE_TIERS;
         
-        return "Creatures/Monsters/" + getName().substring(REPEAT_TIER_STRING[strIndex].length());
+        return "Creatures/Monsters/" + getName().substring(REPEAT_TIER_STRING[strIndex].length());//remove prefix
         
+    }
+    
+    @Override
+    public String toolTipText() {
+        return "<html>" + getName() + "<br>Tier: " + tier + "</html>";
     }
     
     public int sortingValue(){
@@ -82,5 +89,7 @@ public class Monster extends Creature {
     public void draw(Graphics g) {
         CreatureDrawer.drawCreature(this, g);
     }
+
+    
     
 }

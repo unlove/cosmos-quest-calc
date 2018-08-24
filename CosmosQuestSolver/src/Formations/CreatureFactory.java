@@ -288,14 +288,16 @@ public class CreatureFactory {
     
     private void initiateMonsters(){
         //currentID = 0;
-        monsters = new Monster[Creature.Element.values().length][Monster.TOTAL_TIERS];
+        monsters = new Monster[Creature.Element.values().length][Monster.TOTAL_UNIQUE_TIERS * Monster.getNumTimesRepeat()];
         monsterNames = new ArrayList();
         
+        //make shortened references to element numbers
         int air = Creature.Element.AIR.ordinal();
         int water = Creature.Element.WATER.ordinal();
         int earth = Creature.Element.EARTH.ordinal();
         int fire = Creature.Element.FIRE.ordinal();
         
+        //code to get names of repeat creatures? have arrays of monster names in this class
         addMonster("Kodama",air,1,new Monster(Creature.Element.AIR,8,20,1000,1));
         addMonster("Harpy",air,2,new Monster(Creature.Element.AIR,6,48,3900,2));
         addMonster("Griffin",air,3,new Monster(Creature.Element.AIR,12,36,8000,3));
@@ -311,21 +313,21 @@ public class CreatureFactory {
         addMonster("Chronos",air,13,new Monster(Creature.Element.AIR,94,210,2772000,13));
         addMonster("Brahma",air,14,new Monster(Creature.Element.AIR,142,200,4785000,14));
         addMonster("Ginnun",air,15,new Monster(Creature.Element.AIR,190,226,8897000,15));
-        addMonster("Furious Kodama",air,16,new Monster(Creature.Element.AIR,196,280,12855000,16));
-        addMonster("Furious Harpy",air,17,new Monster(Creature.Element.AIR,206,318,16765000,17));
-        addMonster("Furious Griffin",air,18,new Monster(Creature.Element.AIR,280,280,21951000,18));
-        addMonster("Furious Quetzalcoatl",air,19,new Monster(Creature.Element.AIR,206,440,27288000,19));
-        addMonster("Furious Bailong",air,20,new Monster(Creature.Element.AIR,268,378,32242000,20));
-        addMonster("Furious Manticore",air,21,new Monster(Creature.Element.AIR,286,428,42826000,21));
-        addMonster("Furious Anka",air,22,new Monster(Creature.Element.AIR,320,454,55373000,22));
-        addMonster("Furious Typhon",air,23,new Monster(Creature.Element.AIR,348,500,72580000,23));
-        addMonster("Furious Hecatoncheires",air,24,new Monster(Creature.Element.AIR,374,554,94312000,24));
-        addMonster("Furious Ophion",air,25,new Monster(Creature.Element.AIR,430,580,124549000,25));
-        addMonster("Furious The Norns",air,26,new Monster(Creature.Element.AIR,582,496,155097000,26));
-        addMonster("Furious World Egg",air,27,new Monster(Creature.Element.AIR,484,712,202295000,27));
-        addMonster("Furious Chronos",air,28,new Monster(Creature.Element.AIR,642,644,265846000,28));
-        addMonster("Furious Brahma",air,29,new Monster(Creature.Element.AIR,616,834,368230000,29));
-        addMonster("Furious Ginnun",air,30,new Monster(Creature.Element.AIR,906,700,505055000,30));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Kodama",air,16,new Monster(Creature.Element.AIR,196,280,12855000,16));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Harpy",air,17,new Monster(Creature.Element.AIR,206,318,16765000,17));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Griffin",air,18,new Monster(Creature.Element.AIR,280,280,21951000,18));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Quetzalcoatl",air,19,new Monster(Creature.Element.AIR,206,440,27288000,19));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Bailong",air,20,new Monster(Creature.Element.AIR,268,378,32242000,20));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Manticore",air,21,new Monster(Creature.Element.AIR,286,428,42826000,21));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Anka",air,22,new Monster(Creature.Element.AIR,320,454,55373000,22));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Typhon",air,23,new Monster(Creature.Element.AIR,348,500,72580000,23));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Hecatoncheires",air,24,new Monster(Creature.Element.AIR,374,554,94312000,24));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Ophion",air,25,new Monster(Creature.Element.AIR,430,580,124549000,25));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "The Norns",air,26,new Monster(Creature.Element.AIR,582,496,155097000,26));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "World Egg",air,27,new Monster(Creature.Element.AIR,484,712,202295000,27));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Chronos",air,28,new Monster(Creature.Element.AIR,642,644,265846000,28));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Brahma",air,29,new Monster(Creature.Element.AIR,616,834,368230000,29));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Ginnun",air,30,new Monster(Creature.Element.AIR,906,700,505055000,30));
         
         addMonster("Navi",water,1,new Monster(Creature.Element.WATER,6,30,1400,1));
         addMonster("Dakuwaqa",water,2,new Monster(Creature.Element.WATER,12,24,3900,2));
@@ -342,21 +344,21 @@ public class CreatureFactory {
         addMonster("Ogenos",water,13,new Monster(Creature.Element.WATER,128,140,2398000,13));
         addMonster("Niflheim",water,14,new Monster(Creature.Element.WATER,122,212,4159000,14));
         addMonster("Nun",water,15,new Monster(Creature.Element.WATER,142,276,7758000,15));
-        addMonster("Furious Navi",water,16,new Monster(Creature.Element.WATER,198,286,13475000,16));
-        addMonster("Furious Dakuwaqa",water,17,new Monster(Creature.Element.WATER,258,262,17573000,17));
-        addMonster("Furious Mermaid",water,18,new Monster(Creature.Element.WATER,230,330,20909000,18));
-        addMonster("Furious Yeti",water,19,new Monster(Creature.Element.WATER,238,360,25079000,19));
-        addMonster("Furious Hippocampus",water,20,new Monster(Creature.Element.WATER,232,454,34182000,20));
-        addMonster("Furious Hydra",water,21,new Monster(Creature.Element.WATER,290,416,41901000,21));
-        addMonster("Furious Kraken",water,22,new Monster(Creature.Element.WATER,340,440,55877000,22));
-        addMonster("Furious Leviathan",water,23,new Monster(Creature.Element.WATER,354,490,72243000,23));
-        addMonster("Furious Poseidon",water,24,new Monster(Creature.Element.WATER,388,540,95903000,24));
-        addMonster("Furious Cthulhu",water,25,new Monster(Creature.Element.WATER,506,500,127256000,25));
-        addMonster("Furious Jormungandr",water,26,new Monster(Creature.Element.WATER,416,700,157140000,26));
-        addMonster("Furious Cailleach",water,27,new Monster(Creature.Element.WATER,500,682,199344000,27));
-        addMonster("Furious Ogenos",water,28,new Monster(Creature.Element.WATER,536,762,261023000,28));
-        addMonster("Furious Niflheim",water,29,new Monster(Creature.Element.WATER,512,1008,370761000,29));
-        addMonster("Furious Nun",water,30,new Monster(Creature.Element.WATER,802,802,515849000,30));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Navi",water,16,new Monster(Creature.Element.WATER,198,286,13475000,16));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Dakuwaqa",water,17,new Monster(Creature.Element.WATER,258,262,17573000,17));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Mermaid",water,18,new Monster(Creature.Element.WATER,230,330,20909000,18));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Yeti",water,19,new Monster(Creature.Element.WATER,238,360,25079000,19));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Hippocampus",water,20,new Monster(Creature.Element.WATER,232,454,34182000,20));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Hydra",water,21,new Monster(Creature.Element.WATER,290,416,41901000,21));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Kraken",water,22,new Monster(Creature.Element.WATER,340,440,55877000,22));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Leviathan",water,23,new Monster(Creature.Element.WATER,354,490,72243000,23));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Poseidon",water,24,new Monster(Creature.Element.WATER,388,540,95903000,24));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Cthulhu",water,25,new Monster(Creature.Element.WATER,506,500,127256000,25));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Jormungandr",water,26,new Monster(Creature.Element.WATER,416,700,157140000,26));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Cailleach",water,27,new Monster(Creature.Element.WATER,500,682,199344000,27));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Ogenos",water,28,new Monster(Creature.Element.WATER,536,762,261023000,28));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Niflheim",water,29,new Monster(Creature.Element.WATER,512,1008,370761000,29));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Nun",water,30,new Monster(Creature.Element.WATER,802,802,515849000,30));
         
         addMonster("Sapling",earth,1,new Monster(Creature.Element.EARTH,4,44,1300,1));
         addMonster("Alux",earth,2,new Monster(Creature.Element.EARTH,8,30,2700,2));
@@ -373,21 +375,21 @@ public class CreatureFactory {
         addMonster("Gea",earth,13,new Monster(Creature.Element.EARTH,132,190,3971000,13));
         addMonster("Yggdrasil",earth,14,new Monster(Creature.Element.EARTH,136,244,6044000,14));
         addMonster("Kailas",earth,15,new Monster(Creature.Element.EARTH,186,200,7173000,15));
-        addMonster("Furious Sapling",earth,16,new Monster(Creature.Element.EARTH,190,284,12534000,16));
-        addMonster("Furious Alux",earth,17,new Monster(Creature.Element.EARTH,192,338,16531000,17));
-        addMonster("Furious Centaur",earth,18,new Monster(Creature.Element.EARTH,242,330,22567000,18));
-        addMonster("Furious Ent",earth,19,new Monster(Creature.Element.EARTH,282,320,27107000,19));
-        addMonster("Furious Sphinx",earth,20,new Monster(Creature.Element.EARTH,264,382,32025000,20));
-        addMonster("Furious Alraune",earth,21,new Monster(Creature.Element.EARTH,272,446,42252000,21));
-        addMonster("Furious Chimera",earth,22,new Monster(Creature.Element.EARTH,324,450,55671000,22));
-        addMonster("Furious Ammit",earth,23,new Monster(Creature.Element.EARTH,340,516,73483000,23));
-        addMonster("Furious Moai Golem",earth,24,new Monster(Creature.Element.EARTH,458,458,96071000,24));
-        addMonster("Furious Akupara",earth,25,new Monster(Creature.Element.EARTH,418,592,123096000,25));
-        addMonster("Furious Fenrir",earth,26,new Monster(Creature.Element.EARTH,468,622,157055000,26));
-        addMonster("Furious Liche",earth,27,new Monster(Creature.Element.EARTH,602,580,206317000,27));
-        addMonster("Furious Gea",earth,28,new Monster(Creature.Element.EARTH,540,770,268117000,28));
-        addMonster("Furious Yggdrasil",earth,29,new Monster(Creature.Element.EARTH,614,830,363805000,29));
-        addMonster("Furious Kailas",earth,30,new Monster(Creature.Element.EARTH,614,1022,497082000,30));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Sapling",earth,16,new Monster(Creature.Element.EARTH,190,284,12534000,16));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Alux",earth,17,new Monster(Creature.Element.EARTH,192,338,16531000,17));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Centaur",earth,18,new Monster(Creature.Element.EARTH,242,330,22567000,18));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Ent",earth,19,new Monster(Creature.Element.EARTH,282,320,27107000,19));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Sphinx",earth,20,new Monster(Creature.Element.EARTH,264,382,32025000,20));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Alraune",earth,21,new Monster(Creature.Element.EARTH,272,446,42252000,21));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Chimera",earth,22,new Monster(Creature.Element.EARTH,324,450,55671000,22));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Ammit",earth,23,new Monster(Creature.Element.EARTH,340,516,73483000,23));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Moai Golem",earth,24,new Monster(Creature.Element.EARTH,458,458,96071000,24));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Akupara",earth,25,new Monster(Creature.Element.EARTH,418,592,123096000,25));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Fenrir",earth,26,new Monster(Creature.Element.EARTH,468,622,157055000,26));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Liche",earth,27,new Monster(Creature.Element.EARTH,602,580,206317000,27));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Gea",earth,28,new Monster(Creature.Element.EARTH,540,770,268117000,28));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Yggdrasil",earth,29,new Monster(Creature.Element.EARTH,614,830,363805000,29));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Kailas",earth,30,new Monster(Creature.Element.EARTH,614,1022,497082000,30));
         
         addMonster("Will-o-the-whisp",fire,1,new Monster(Creature.Element.FIRE,10,16,1000,1));
         addMonster("Fox Spirit",fire,2,new Monster(Creature.Element.FIRE,16,18,3900,2));
@@ -404,21 +406,21 @@ public class CreatureFactory {
         addMonster("Bahamut",fire,13,new Monster(Creature.Element.FIRE,130,166,3169000,13));
         addMonster("Ra",fire,14,new Monster(Creature.Element.FIRE,168,168,4741000,14));
         addMonster("Chaos",fire,15,new Monster(Creature.Element.FIRE,136,234,5676000,15));
-        addMonster("Furious Will-o-the-whisp",fire,16,new Monster(Creature.Element.FIRE,192,288,13001000,16));
-        addMonster("Furious Fox Spirit",fire,17,new Monster(Creature.Element.FIRE,292,236,18090000,17));
-        addMonster("Furious Hellhound",fire,18,new Monster(Creature.Element.FIRE,200,392,21951000,18));
-        addMonster("Furious Wyvern",fire,19,new Monster(Creature.Element.FIRE,244,352,25170000,19));
-        addMonster("Furious Cherufe",fire,20,new Monster(Creature.Element.FIRE,266,388,33155000,20));
-        addMonster("Furious Gargoyle",fire,21,new Monster(Creature.Element.FIRE,338,362,42798000,21));
-        addMonster("Furious Ifrit",fire,22,new Monster(Creature.Element.FIRE,318,458,55582000,22));
-        addMonster("Furious Phoenix",fire,23,new Monster(Creature.Element.FIRE,410,424,72480000,23));
-        addMonster("Furious Balrog",fire,24,new Monster(Creature.Element.FIRE,392,534,95772000,24));
-        addMonster("Furious Beelzebub",fire,25,new Monster(Creature.Element.FIRE,328,764,125443000,25));
-        addMonster("Furious Huitzilopochtli",fire,26,new Monster(Creature.Element.FIRE,462,638,160026000,26));
-        addMonster("Furious Surtur",fire,27,new Monster(Creature.Element.FIRE,498,690,201426000,27));
-        addMonster("Furious Bahamut",fire,28,new Monster(Creature.Element.FIRE,552,746,264250000,28));
-        addMonster("Furious Ra",fire,29,new Monster(Creature.Element.FIRE,676,746,358119000,29));
-        addMonster("Furious Chaos",fire,30,new Monster(Creature.Element.FIRE,690,930,514040000,30));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Will-o-the-whisp",fire,16,new Monster(Creature.Element.FIRE,192,288,13001000,16));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Fox Spirit",fire,17,new Monster(Creature.Element.FIRE,292,236,18090000,17));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Hellhound",fire,18,new Monster(Creature.Element.FIRE,200,392,21951000,18));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Wyvern",fire,19,new Monster(Creature.Element.FIRE,244,352,25170000,19));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Cherufe",fire,20,new Monster(Creature.Element.FIRE,266,388,33155000,20));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Gargoyle",fire,21,new Monster(Creature.Element.FIRE,338,362,42798000,21));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Ifrit",fire,22,new Monster(Creature.Element.FIRE,318,458,55582000,22));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Phoenix",fire,23,new Monster(Creature.Element.FIRE,410,424,72480000,23));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Balrog",fire,24,new Monster(Creature.Element.FIRE,392,534,95772000,24));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Beelzebub",fire,25,new Monster(Creature.Element.FIRE,328,764,125443000,25));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Huitzilopochtli",fire,26,new Monster(Creature.Element.FIRE,462,638,160026000,26));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Surtur",fire,27,new Monster(Creature.Element.FIRE,498,690,201426000,27));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Bahamut",fire,28,new Monster(Creature.Element.FIRE,552,746,264250000,28));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Ra",fire,29,new Monster(Creature.Element.FIRE,676,746,358119000,29));
+        addMonster(Monster.REPEAT_TIER_STRING[1] + "Chaos",fire,30,new Monster(Creature.Element.FIRE,690,930,514040000,30));
     }
 
     private void initiateHeroes() {

@@ -37,7 +37,7 @@ public class BloodBomb extends SpecialAbility{
 
     @Override
     public String getDescription() {
-        return "After killing, deal " + damage + " aoe";
+        return "After killing, deals " + damage + " aoe";
     }
 
     @Override

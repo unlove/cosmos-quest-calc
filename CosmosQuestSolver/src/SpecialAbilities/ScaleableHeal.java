@@ -46,7 +46,12 @@ public class ScaleableHeal extends Heal{
             milestoneStr = Double.toString(levelMilestone);
         }
         
-        return "+" + amount + " heal every " + milestoneStr + " lvl";
+        if (levelMilestone == 1){
+            return "Heals formation " + amount + " HP every level, every turn";
+        }
+        else{
+            return "Heals formation " + amount + " HP every " + milestoneStr + " levels every turn";
+        }
     }
     
     @Override

@@ -40,7 +40,7 @@ public class Heal extends SpecialAbility{
     
     @Override
     public String getDescription() {
-        return "Heal " + amount + " after every turn";
+        return "Heals formation " + amount + " HP after every turn";
     }
     
     @Override

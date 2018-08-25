@@ -41,7 +41,7 @@ public class OutnumberedPercentDamage extends SpecialAbility{
     
     @Override
     public String getDescription() {
-        return "PASSIVE: deal % damage when outnumbered";
+        return "At start, cuts enemy hp by a percent if outnumbered";
     }
     
     @Override

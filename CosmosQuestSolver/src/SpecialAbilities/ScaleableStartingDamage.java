@@ -36,10 +36,10 @@ public class ScaleableStartingDamage extends StartingDamage{
     @Override
     public String getDescription() {
         if (levelMilestone == 1){
-            return "PASSIVE: Deal " + amount + " per level damage";
+            return "At start, deal " + amount + " aoe per level";
         }
         else{
-            return "PASSIVE: Deal " + amount + " per " + levelMilestone + " level damage";
+            return "At start, deal " + amount + " aoe every " + levelMilestone + " levels";
         }
     }
     

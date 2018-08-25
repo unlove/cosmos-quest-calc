@@ -43,7 +43,12 @@ public class ScaleableAOE extends AOE{
             milestoneStr = Double.toString(levelMilestone);
         }
         
-        return "+" + damage + " aoe every " + milestoneStr + " lvl";
+        if (levelMilestone == 1){
+            return "Before every turn, Deal " + damage + " aoe every level";
+        }
+        else{
+            return "Before every turn, Deal " + damage + " aoe every " + milestoneStr + " levels";
+        }
     }
     
     @Override

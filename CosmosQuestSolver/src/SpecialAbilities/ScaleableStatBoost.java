@@ -75,21 +75,31 @@ public class ScaleableStatBoost extends StatBoost{
         
         String milestoneStr = "";
         if (levelMilestone % 1 == 0){
-            milestoneStr = Integer.toString((int)levelMilestone);
+            if (levelMilestone == 1){
+                milestoneStr = "level";
+            }
+            else{
+                milestoneStr = Integer.toString((int)levelMilestone) + " levels";
+            }
         }
         else{
-            milestoneStr = Double.toString(levelMilestone);
+            if (levelMilestone == 1){
+                milestoneStr = "level";
+            }
+            else{
+                milestoneStr = Double.toString(levelMilestone) + " levels";
+            }
         }
         
         if (attBoost != 0 && armorBoost == 0){
-            return "+" + attBoost + " attack to " + elementStr + " creatures every " + milestoneStr + " lvl";
+            return "+" + attBoost + " attack to " + elementStr + " creatures every " + milestoneStr;
         }
         else if (attBoost == 0 && armorBoost != 0){
-            return "+" + armorBoost + " armor to " + elementStr + " creatures every " + milestoneStr + " lvl";
+            return "+" + armorBoost + " armor to " + elementStr + " creatures every " + milestoneStr;
         }
         else if (attBoost != 0 && armorBoost != 0){
             if (attBoost == armorBoost){
-                return "+" + attBoost + " armor/atk to " + elementStr + " creatures every " + milestoneStr + " lvl";
+                return "+" + attBoost + " armor & atk to " + elementStr + " creatures every " + milestoneStr;
             }
             else{
                 return ""; //todo. no creature has this yet

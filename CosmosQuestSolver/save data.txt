@@ -1,4 +1,4 @@
-71022000
+71209000
 6
 Hunter,99,false,false
 Shaman,99,false,false
@@ -26,7 +26,7 @@ Erebus,99,false,false
 Pontus,99,true,false
 Oymos,99,false,false
 Xarth,99,false,false
-Atzar,42,false,false
+Atzar,43,false,false
 Hama,99,false,false
 Hallinskidi,99,false,false
 Rigr,99,true,false
@@ -48,7 +48,7 @@ Ascended Geum,65,true,false
 Ascended Geror,1,false,false
 Ascended Pontus,59,true,false
 Ascended Atzar,1,false,false
-Ascended Rigr,72,true,false
+Ascended Rigr,73,true,false
 Ascended Dagda,1,false,false
 Ascended Bavah,1,false,false
 Valor,99,false,false

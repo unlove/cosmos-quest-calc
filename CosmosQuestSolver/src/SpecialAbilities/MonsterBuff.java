@@ -49,7 +49,7 @@ public class MonsterBuff extends SpecialAbility{
     
     @Override
     public String getDescription() {
-        return "Monsters behind increace attack by " + multiplier;
+        return "Monsters behind multiply attack by " + multiplier;
     }
     
     @Override

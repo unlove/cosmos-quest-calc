@@ -374,12 +374,7 @@ public class Formation implements Iterable<Creature>{
     
     //primary method for simulating battles
     public static void battle(Formation thisFormation, Formation enemyFormation){
-        thisFormation.prepareForFight(enemyFormation);
-        enemyFormation.prepareForFight(thisFormation);
-        thisFormation.startOfFightAction(enemyFormation);
-        enemyFormation.startOfFightAction(thisFormation);
-        thisFormation.startOfFightAction2(enemyFormation);
-        enemyFormation.startOfFightAction2(thisFormation);
+        doBattlePrep(thisFormation,enemyFormation);
         
         int roundNumber = 0;
         
@@ -394,6 +389,15 @@ public class Formation implements Iterable<Creature>{
                 System.out.println(thisFormation);
             }
         }
+    }
+    
+    public static void doBattlePrep(Formation thisFormation, Formation enemyFormation){
+        thisFormation.prepareForFight(enemyFormation);
+        enemyFormation.prepareForFight(thisFormation);
+        thisFormation.startOfFightAction(enemyFormation);
+        enemyFormation.startOfFightAction(thisFormation);
+        thisFormation.startOfFightAction2(enemyFormation);
+        enemyFormation.startOfFightAction2(thisFormation);
     }
     
     public static void doOneRound(Formation thisFormation, Formation enemyFormation){
@@ -413,31 +417,7 @@ public class Formation implements Iterable<Creature>{
         enemyFormation.handleCreatureDeaths(thisFormation);
     }
     
-    public static LinkedList<BattleState> getBattleStates(Formation thisFormation, Formation enemyFormation) {
-        LinkedList<BattleState> stats = new LinkedList<>();
-        
-        thisFormation.prepareForFight(enemyFormation);
-        enemyFormation.prepareForFight(thisFormation);
-        thisFormation.startOfFightAction(enemyFormation);
-        enemyFormation.startOfFightAction(thisFormation);
-        thisFormation.startOfFightAction2(enemyFormation);
-        enemyFormation.startOfFightAction2(thisFormation);
-        
-        int roundNumber = 0;
-        stats.add(new BattleState(thisFormation.getCopy(),enemyFormation.getCopy(),roundNumber));
-        
-        while(!(thisFormation.isEmpty() || enemyFormation.isEmpty()) && roundNumber < STALEMATE_CUTOFF_POINT){
-            roundNumber ++;
-            doOneRound(thisFormation,enemyFormation);
-            stats.add(new BattleState(thisFormation.getCopy(),enemyFormation.getCopy(),roundNumber));
-        }
-        
-        //if (thisFormation.isEmpty() || enemyFormation.isEmpty()){
-            //stats.add(new BattleState(thisFormation.getCopy(),enemyFormation.getCopy()));
-        //}
-        
-        return stats;
-    }
+    
     
     //prints a text log of the battle for debugging
     private static void printBattleStatus(Formation thisFormation, Formation enemyFormation, int roundNumber){

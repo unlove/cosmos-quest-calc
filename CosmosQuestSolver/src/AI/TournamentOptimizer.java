@@ -170,7 +170,7 @@ public class TournamentOptimizer extends AISolver{//if (leprechaun) delete monst
     @Override
     public void recieveRefine() {
         buildingStage = false;
-        giveUpPointStart = winnerTakeAll ? 3500 : 500;//take number of rows into account?
+        giveUpPointStart = winnerTakeAll ? 3400 : 500;//take number of rows into account?
         giveUpPoint = giveUpPointStart;
         giveUpPointIncreace = (int)(giveUpPoint/150);
         //topGridForRefinement = rankings.getTopGrid().getCopy();

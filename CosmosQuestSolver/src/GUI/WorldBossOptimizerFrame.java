@@ -83,6 +83,9 @@ public class WorldBossOptimizerFrame extends JFrame implements ISolverFrame{
     @Override
     public void recieveSolution(Formation f){
         worldBossSelectionPanel.recieveSolution(f);
+        LinkedList<Creature> bossList = new LinkedList<>();
+        bossList.add(getBoss());
+        calculationPanel.updateSolutionDetails(f,new Formation(bossList));
     }
 
     @Override
@@ -150,6 +153,7 @@ public class WorldBossOptimizerFrame extends JFrame implements ISolverFrame{
     @Override
     public void parametersChanged() {
         calculationPanel.recieveStopSearching();
+        calculationPanel.parametersChanged();
         worldBossSelectionPanel.parametersChanged();
     }
     
@@ -166,6 +170,11 @@ public class WorldBossOptimizerFrame extends JFrame implements ISolverFrame{
     @Override
     public void recieveStart() {
         
+    }
+    
+    @Override
+    public boolean showViewButton() {
+        return true;
     }
     
 }

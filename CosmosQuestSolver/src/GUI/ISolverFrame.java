@@ -30,5 +30,7 @@ public interface ISolverFrame {
     void repaint();
     void dispose();
     boolean requestFocusInWindow();
+
+    public boolean showViewButton();
     
 }

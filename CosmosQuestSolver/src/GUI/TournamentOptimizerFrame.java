@@ -317,6 +317,7 @@ public class TournamentOptimizerFrame extends JFrame implements ISolverFrame, Do
     public void parametersChanged() {
         tournamentGridPanel.resetGrid();
         calculationPanel.recieveStopSearching();
+        calculationPanel.parametersChanged();
     }
     
     @Override
@@ -346,6 +347,9 @@ public class TournamentOptimizerFrame extends JFrame implements ISolverFrame, Do
         }
     }
 
-    
+    @Override
+    public boolean showViewButton() {
+        return false;
+    }
     
 }

@@ -3,13 +3,13 @@
  */
 package GUI;
 
+import Formations.BattleLog;
 import Formations.BattleState;
 import Formations.Formation;
 import cosmosquestsolver.OtherThings;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 
 public class SimulationPanel extends JPanel implements ActionListener{
     
-    private JFrame frame;
+    protected JFrame frame;
     
     private JPanel battlePanel;
     private JPanel buttonPanel;
@@ -41,9 +41,9 @@ public class SimulationPanel extends JPanel implements ActionListener{
     private JButton lastButton;
     private JButton previousButton;
     private JButton nextButton;
-    private JButton menuButton;
+    protected JButton menuButton;
     
-    private LinkedList<BattleState> states;
+    protected BattleLog log;
     private int roundNum;
     
     
@@ -139,28 +139,27 @@ public class SimulationPanel extends JPanel implements ActionListener{
         buttonPanel.setOpaque(false);
         setOpaque(false);
         
-        states = new LinkedList<>();
-        states.add(new BattleState(new Formation(),new Formation(),0));
+        log = new BattleLog();
         roundNum = 0;
         
     }
     
-    public void recieveSimulation(LinkedList<BattleState> states){
-        this.states = states;
-        changeRound(states.size()-1);
+    public void recieveSimulation(BattleLog log){
+        this.log = log;
+        changeRound(log.length()-1);
     }
     
-    private void changeRound(int round){
+    protected void changeRound(int round){
         if (round < 0){
             round = 0;
         }
-        else if (round >= states.size()){
-            round = states.size() - 1;
+        else if (round >= log.length()){
+            round = log.length() - 1;
         }
         
         roundNum = round;
         
-        BattleState state = states.get(round);
+        BattleState state = log.getState(round);
         
         leftFormationPanel.updateFormation(state.leftFormation);
         rightFormationPanel.updateFormation(state.rightFormation);
@@ -179,7 +178,7 @@ public class SimulationPanel extends JPanel implements ActionListener{
                 changeRound(0);
             break;
             case "last":
-                changeRound(states.size()-1);
+                changeRound(log.length()-1);
             break;
             case "previous":
                 changeRound(roundNum - 1);
@@ -188,14 +187,20 @@ public class SimulationPanel extends JPanel implements ActionListener{
                 changeRound(roundNum + 1);
             break;
             case "menu":
-                new MenuFrame();
-                frame.setVisible(false);
-                frame.dispose();
+                exit();
             break;
             default:
                 System.out.println("Error: unknown action command in SimulationPanel");
         }
-        frame.requestFocusInWindow();
+        if (frame != null){
+            frame.requestFocusInWindow();
+        }
+    }
+    
+    public void exit(){
+        new MenuFrame();
+        frame.setVisible(false);
+        frame.dispose();
     }
     
 }

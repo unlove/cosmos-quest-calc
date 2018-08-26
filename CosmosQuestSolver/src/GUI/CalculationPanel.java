@@ -4,15 +4,21 @@
 package GUI;
 
 import AI.AISolver;
+import Formations.BattleLog;
 import Formations.Creature;
+import Formations.CreatureFactory;
 import Formations.Formation;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -29,11 +35,13 @@ public class CalculationPanel extends JPanel implements ActionListener{
     private JPanel buttonPanel;
     private JButton findButton;
     private JButton stopSearchButton;
+    private JButton solutionDetailsButton;
     private JButton backButton;
     private JLabel searchingLabel;
     private JLabel messageLabel;
     private int resultStatus;// -1: no solution, 0: searching, 1: found solution. polling to change labels because they weren't updating with commands
     private ChatBox entireListChatBox;
+    private BattleLog log;
     
     
     private Timer timer;
@@ -43,10 +51,12 @@ public class CalculationPanel extends JPanel implements ActionListener{
         resultStatus = 0;
         
         solver = frame.makeSolver();
+        log = new BattleLog();
         
         buttonPanel = new JPanel();
         findButton = new JButton("Find");
         stopSearchButton = new JButton("Stop Searching");
+        solutionDetailsButton = new JButton("View Solution");
         backButton = new JButton("Back to Menu");
         searchingLabel = new JLabel("");
         messageLabel = new JLabel("");
@@ -56,14 +66,19 @@ public class CalculationPanel extends JPanel implements ActionListener{
         
         findButton.addActionListener(this);
         stopSearchButton.addActionListener(this);
+        solutionDetailsButton.addActionListener(this);
         backButton.addActionListener(this);
         
         findButton.setActionCommand("find");
         stopSearchButton.setActionCommand("stop searching");
+        solutionDetailsButton.setActionCommand("view solution");
         backButton.setActionCommand("back");
         
         buttonPanel.add(findButton);
         buttonPanel.add(stopSearchButton);
+        if (frame.showViewButton()){
+            buttonPanel.add(solutionDetailsButton);
+        }
         buttonPanel.add(backButton);
         
         buttonAndInfoPanel.add(buttonPanel);
@@ -85,6 +100,7 @@ public class CalculationPanel extends JPanel implements ActionListener{
         entireListChatBox.setMinimumSize(new Dimension(300,150));
         
         searchingLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        solutionDetailsButton.setEnabled(false);
         
         timer = new Timer(200,this);
         timer.setActionCommand("timer");
@@ -100,6 +116,7 @@ public class CalculationPanel extends JPanel implements ActionListener{
                     frame.recieveSolution(new Formation());//erases any previous solutions
                     frame.recieveStart();
                     entireListChatBox.clear();
+                    solutionDetailsButton.setEnabled(false);
                     solver = frame.makeSolver();//resets solver
                     new Thread(solver).start();
                     
@@ -111,6 +128,9 @@ public class CalculationPanel extends JPanel implements ActionListener{
             case "stop searching": 
                 recieveStopSearching();
                 frame.requestFocusInWindow();
+            break;
+            case "view solution":
+                showSimulation();
             break;
             case "back":
                 solver.stopSearching();
@@ -158,14 +178,11 @@ public class CalculationPanel extends JPanel implements ActionListener{
         resultStatus = 0;
     }
     
-    public void recieveSolution(){
+    public void recieveSolutionFound(){
         searchingLabel.setText("");
+        solutionDetailsButton.setEnabled(true);
         resultStatus = 1;
     }
-
-    //public void printSearchingLabelText() {
-        //System.out.println("SearchingLabelText: " + messageLabel.getText());
-    //}
 
     public void recieveProgressString(String text) {
         searchingLabel.setText(text);
@@ -182,6 +199,52 @@ public class CalculationPanel extends JPanel implements ActionListener{
 
     public void recieveRefine() {
         solver.recieveRefine();
+    }
+    
+    public void parametersChanged(){
+        solutionDetailsButton.setEnabled(false);
+    }
+
+    public void updateSolutionDetails(Formation left, Formation right) {
+        solutionDetailsButton.setEnabled(true);
+        log = new BattleLog(left.getCopy(),right.getCopy());
+    }
+
+    private void showSimulation() {
+        JDialog dialog = new JDialog((JFrame)frame, "Battle Replay", true);//getId?
+        dialog.setLocationRelativeTo(null);
+        
+        JPanel backgroundPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(CreatureFactory.getPicture("Backgrounds/CQ Background"), 0, 0, dialog.getWidth(), dialog.getHeight(), null);
+            }
+        };
+        
+        backgroundPanel.add(new SimulationOneTimePanel(dialog, log));
+        
+        dialog.getContentPane().add(backgroundPanel);
+        centerScreen(dialog);
+        
+        dialog.pack();
+        dialog.setVisible(true);
+        
+    }
+    
+    private void centerScreen(JDialog dialog) 
+    {
+        // Get the size of the screen
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+
+        // Determine the new location of the window
+        int w = this.getSize().width;
+        int h = this.getSize().height;
+        int x = (dim.width-w)/2;
+        int y = (dim.height-h)/2;
+
+        // Move the window
+        dialog.setLocation(x, y);
     }
     
 }

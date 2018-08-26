@@ -5,7 +5,6 @@ package SpecialAbilities;
 
 import Formations.Creature;
 import Formations.Formation;
-import cosmosquestsolver.OtherThings;
 
 //multiplies the damage done to a creature by a specified amount if the creature
 //and the owner have the same element. Damage is multiplied before attack boosts
@@ -48,7 +47,7 @@ public class Purity extends SpecialAbility{
         else{
             numStr = "x " + multiplier;
         }
-        return numStr + " attack against same type";
+        return numStr + " attack against same element";
     }
     
     @Override

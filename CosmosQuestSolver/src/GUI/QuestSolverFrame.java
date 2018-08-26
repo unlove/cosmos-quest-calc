@@ -12,14 +12,10 @@ import Formations.Formation;
 import Formations.Hero;
 import Formations.Levelable;
 import Formations.Monster;
-import java.awt.AWTEvent;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -28,18 +24,14 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
 import java.io.PrintWriter;
 import java.util.LinkedList;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayer;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 import javax.swing.plaf.LayerUI;
 
 //layerUI and JLayer for dragging?
@@ -279,7 +271,8 @@ public class QuestSolverFrame extends JFrame implements ISolverFrame, EnemySelec
         
         solutionFormationPanel.updateFormation(f);
         if (!f.isEmpty()){//called by calculationPanel to clear solution. not really a solution
-            calculationPanel.recieveSolution();
+            calculationPanel.recieveSolutionFound();
+            calculationPanel.updateSolutionDetails(f, enemyFormationMakerPanel.getEnemyFormation());
         }
     }
 
@@ -399,6 +392,7 @@ public class QuestSolverFrame extends JFrame implements ISolverFrame, EnemySelec
     public void parametersChanged() {
         if (calculationPanel != null){
             calculationPanel.recieveStopSearching();
+            calculationPanel.parametersChanged();
         }
         if (solutionFormationPanel != null){
             solutionFormationPanel.updateFormation(new Formation());
@@ -422,6 +416,11 @@ public class QuestSolverFrame extends JFrame implements ISolverFrame, EnemySelec
 
     public boolean heroPrioritized(String hName) {
         return assetPanel.heroPrioritized(hName);
+    }
+
+    @Override
+    public boolean showViewButton() {
+        return true;
     }
 
     

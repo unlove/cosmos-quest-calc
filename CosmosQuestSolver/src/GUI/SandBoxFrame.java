@@ -3,15 +3,13 @@
  */
 package GUI;
 
+import Formations.BattleLog;
 import Formations.Creature;
 import Formations.CreatureFactory;
-import Formations.Formation;
 import static GUI.QuestSolverFrame.QUEST_SOLVER_FRAME_HEIGHT;
 import static GUI.QuestSolverFrame.QUEST_SOLVER_FRAME_WIDTH;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -20,7 +18,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.awt.image.BufferedImage;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -192,29 +189,12 @@ public class SandBoxFrame extends JFrame implements EnemySelectFrame, MouseListe
     @Override
     public void setMouseCreature(Creature mouseCreature){
         this.mouseCreature = mouseCreature;
-        /*
-        if (mouseCreature != null){
-            BufferedImage image = null;
-            if (mouseCreature.isFacingRight()){
-                image = (CreatureFactory.getPicture(mouseCreature.getImageAddress()));
-            }
-            else{
-                image = QuestSolverFrame.createRotated(QuestSolverFrame.createFlipped(CreatureFactory.getPicture(mouseCreature.getImageAddress())));
-
-            }
-            Cursor c = toolkit.createCustomCursor(image , new Point(getContentPane().getX(), getContentPane().getY()), "img");
-            setCursor (c);
-        }
-        else{
-            setCursor(Cursor.getDefaultCursor());
-        }
-*/
     }
 
     @Override
     public void parametersChanged() {
         if (simulationPanel != null){
-            simulationPanel.recieveSimulation(Formation.getBattleStates(leftSelectionPanel.getEnemyFormation().getCopy(),rightSelectionPanel.getEnemyFormation().getCopy()));
+            simulationPanel.recieveSimulation(new BattleLog(leftSelectionPanel.getEnemyFormation().getCopy(),rightSelectionPanel.getEnemyFormation().getCopy()));
         }
     }
     

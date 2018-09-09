@@ -25,6 +25,7 @@ public interface ISolverFrame {
     void backToMenuAction();
     void recieveProgressString(String text);
     void recieveCreatureList(LinkedList<Creature> list);
+    String getSelectSource();
     
     void setVisible(Boolean b);
     void repaint();

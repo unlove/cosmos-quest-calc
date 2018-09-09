@@ -17,6 +17,7 @@ public class Ricochet extends SpecialAbility{
     private double multiplier;
     private int numBounces;
     private long damageDealtThisRound;
+    private boolean deadOnStart;//fringe case where lep and/or Hawking kills them at the start
 
     public Ricochet(Creature owner, double multiplier, int numBounces) {
         super(owner);
@@ -26,6 +27,7 @@ public class Ricochet extends SpecialAbility{
     
     public void preRoundAction(Formation thisFormation, Formation enemyFormation){
         damageDealtThisRound = 0;
+        deadOnStart = owner.isDead();
     }
     
     @Override
@@ -41,18 +43,20 @@ public class Ricochet extends SpecialAbility{
     @Override
     public void attack(Formation thisFormation, Formation enemyFormation) {
         super.attack(thisFormation,enemyFormation);
-        int bouncesLeft = numBounces;
-        double damage = (double) Math.floor(damageDealtThisRound * (1-enemyFormation.getAOEResistance()));//rounding accurate?
-        
-        for (Creature creature : enemyFormation){
-            if(creature != enemyFormation.getFrontCreature()){//front creature was already attacked
-                if (bouncesLeft > 0){
-                    damage *= multiplier;
-                    creature.changeHP(-damage,enemyFormation);
-                    bouncesLeft --;
-                }
-                else{
-                    break;
+        if (!deadOnStart){
+            int bouncesLeft = numBounces;
+            double damage = (double) Math.floor(damageDealtThisRound * (1-enemyFormation.getAOEResistance()));//rounding accurate?
+
+            for (Creature creature : enemyFormation){
+                if(creature != enemyFormation.getFrontCreature()){//front creature was already attacked
+                    if (bouncesLeft > 0){
+                        damage *= multiplier;
+                        creature.changeHP(-damage,enemyFormation);
+                        bouncesLeft --;
+                    }
+                    else{
+                        break;
+                    }
                 }
             }
         }

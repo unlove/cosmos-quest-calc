@@ -13,10 +13,14 @@ import Formations.WorldBoss;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.io.File;
+import java.io.PrintWriter;
 import java.util.LinkedList;
+import java.util.Scanner;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 // gui for world boss damage optimization
@@ -175,6 +179,11 @@ public class WorldBossOptimizerFrame extends JFrame implements ISolverFrame{
     @Override
     public boolean showViewButton() {
         return true;
+    }
+
+    @Override
+    public String getSelectSource() {
+        return "save data/hero boss select data.txt";
     }
     
 }

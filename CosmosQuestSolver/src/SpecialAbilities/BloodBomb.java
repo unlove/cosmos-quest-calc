@@ -42,7 +42,7 @@ public class BloodBomb extends SpecialAbility{
 
     @Override
     public int viability() {
-        return (owner.getBaseHP() * owner.getBaseAtt()) + (damage * Formation.MAX_MEMBERS * Formation.MAX_MEMBERS);
+        return (owner.getBaseHP() * owner.getBaseAtt()) + (damage * damage * Formation.MAX_MEMBERS);
     }
     
     

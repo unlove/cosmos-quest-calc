@@ -24,13 +24,16 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.PrintWriter;
 import java.util.LinkedList;
+import java.util.Scanner;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayer;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.plaf.LayerUI;
 
@@ -76,7 +79,7 @@ public class QuestSolverFrame extends JFrame implements ISolverFrame, EnemySelec
         };
         
         assetPanel = new AssetPanel(this,true);
-        enemyFormationMakerPanel = new EnemyFormationMakerPanel(this,"Enemy Formation",false,false,true,false);
+        enemyFormationMakerPanel = new EnemyFormationMakerPanel(this,"Enemy Formation",false,false,true,false,true);
         calculationPanel = new CalculationPanel(this);
         topPanel = new JPanel();
         solutionLabel = new JLabel("Solution");
@@ -154,7 +157,7 @@ public class QuestSolverFrame extends JFrame implements ISolverFrame, EnemySelec
     
     public void saveEnemyFormation(){
         try{
-            PrintWriter file = new PrintWriter("quest formation data.txt");
+            PrintWriter file = new PrintWriter("save data/quest formation data.txt");
             Formation f = enemyFormationMakerPanel.getEnemyFormation();
             LinkedList<Creature> list = f.getMembers();
             for (Creature c : list){
@@ -422,6 +425,13 @@ public class QuestSolverFrame extends JFrame implements ISolverFrame, EnemySelec
     public boolean showViewButton() {
         return true;
     }
+
+    @Override
+    public String getSelectSource() {
+        return "save data/hero quest select data.txt";
+    }
+
+    
 
     
 

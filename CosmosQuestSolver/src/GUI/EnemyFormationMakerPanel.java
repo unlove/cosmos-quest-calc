@@ -40,7 +40,7 @@ public class EnemyFormationMakerPanel extends JPanel implements ActionListener, 
     
     public static final int MONSTER_SCROLL_VIEW_AMOUNT = 5;
     
-    public EnemyFormationMakerPanel(EnemySelectFrame frame, String title, boolean facingRight, boolean loadHeroes, boolean loadQuest, boolean includeBosses){
+    public EnemyFormationMakerPanel(EnemySelectFrame frame, String title, boolean facingRight, boolean loadHeroes, boolean loadQuest, boolean includeBosses, boolean includeQuests){
         this.frame = frame;
         this.facingRight = facingRight;
         
@@ -48,7 +48,7 @@ public class EnemyFormationMakerPanel extends JPanel implements ActionListener, 
         enemyFormationAndButtonPanel = new JPanel();
         clearFormationButton = new JButton("Clear");
         enemyFormationPanel = new EnemyFormationPanel(frame,this,facingRight,loadQuest);
-        monsterSelectionPanel = new MonsterSelectionPanel(frame,this,facingRight);
+        monsterSelectionPanel = new MonsterSelectionPanel(frame,this,facingRight,includeQuests);
         enemyHeroesCustomizationPanel = new EnemyHeroesCustomizationPanel(frame,this,AssetPanel.HERO_SELECTION_COLUMNS,facingRight,includeBosses,loadHeroes);
         enemyHeroesCustomizationScrollPane = new JScrollPane(enemyHeroesCustomizationPanel);
         

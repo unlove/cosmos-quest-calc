@@ -167,7 +167,7 @@ public class WorldBossSelectionPanel extends JPanel implements ActionListener{
         
         private void setMouseOverText(){
             if (boss != null){
-                setToolTipText(boss.getName() + ": " + boss.getSpecialAbility().getDescription());
+                setToolTipText(boss.toolTipText());
             }
         }
         

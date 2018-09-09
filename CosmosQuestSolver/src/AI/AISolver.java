@@ -76,7 +76,7 @@ public abstract class AISolver implements Runnable{
         
         int numStrongerHeroes = 0;
         for (Hero h : heroes){
-            if(h.getBaseHP() * h.getBaseAtt() * 1.5 > strongestMonster.getBaseHP() * strongestMonster.getBaseAtt()){//*1.5? use special abilities instead?
+            if(h.getBaseHP() * h.getBaseAtt() * 3 > strongestMonster.getBaseHP() * strongestMonster.getBaseAtt()){//*3? use special abilities instead?
                 numStrongerHeroes ++;
             }
         }

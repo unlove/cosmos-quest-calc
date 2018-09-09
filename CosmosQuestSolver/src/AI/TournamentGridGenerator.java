@@ -371,6 +371,7 @@ public class TournamentGridGenerator {
 
     public static TournamentGrid newAlteredGrid(TournamentGrid grid, long totalFollowers, int maxCreatures, int numChanges) {
         TournamentGrid newGrid;
+        
         if (Math.random() < 0.5){
             newGrid = swapPlaces(grid);
         }
@@ -389,7 +390,7 @@ public class TournamentGridGenerator {
     
     private static TournamentGrid swapPlaces(TournamentGrid grid){
         //convert grid into list
-        LinkedList<Creature> list = gridFromList(grid);
+        LinkedList<Creature> list = listFromGrid(grid);
         
         if (list.size() < 2){//needs at least 2 to swap places
             return grid;
@@ -414,7 +415,7 @@ public class TournamentGridGenerator {
         
     }
     
-    private static LinkedList<Creature> gridFromList(TournamentGrid grid){
+    private static LinkedList<Creature> listFromGrid(TournamentGrid grid){
         LinkedList<Creature> list = new LinkedList<>();
         for (Formation f : grid.getFormations()){
             for (Creature c : f){
@@ -427,7 +428,7 @@ public class TournamentGridGenerator {
     private static TournamentGrid changeMonsterElement(TournamentGrid grid, long totalFollowers, int maxCreatures){
         
         //get list of monsters
-        LinkedList<Creature> creatures = gridFromList(grid);
+        LinkedList<Creature> creatures = listFromGrid(grid);
         if (!hasMonsters(creatures)){
             return newAlteredGrid(grid,totalFollowers,maxCreatures,1);//try something else
         }
@@ -479,6 +480,34 @@ public class TournamentGridGenerator {
         }
         while(element == m.getElement());
         return element;
+    }
+
+    public static TournamentGrid deleteLepMonsters(TournamentGrid grid, long totalFollowers, int maxCreatures) {
+        TournamentGrid copy = grid.getCopy();
+        for (Formation f : copy.getFormations()){
+            if (f.contains(CreatureFactory.getHero("Leprechaun", 1)) && f.containsLepHeroes()){
+                f.removeMonsters();
+                break;
+            }
+        }
+        LinkedList<Monster> monsters = extractMonsters(listFromGrid(copy));
+        //testList(monsters);
+        monsters = upgradeMonsters(monsters,totalFollowers,0);
+        //testList(monsters);
+        //System.out.println("*****************************************");
+        return copy;
+    }
+    
+    private static void testList(LinkedList<Monster> l){
+        for (Monster m : l){
+            System.out.println(m.getName());
+        }
+        long totalFollowers = 0;
+        for (Monster m : l){
+            totalFollowers += m.getFollowers();
+        }
+        System.out.println("Followers:" + totalFollowers);
+        System.out.println("___________");
     }
     
     

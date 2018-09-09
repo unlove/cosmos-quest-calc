@@ -11,15 +11,17 @@ import Formations.WorldBoss;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
 
 public class CreatureDrawer {
     
     public static final int CREATURE_WIDTH = 74;
-    public static final int CREATURE_HEIGHT = 72;
+    public static final int CREATURE_HEIGHT = 73;
     public static final int CREATURE_X = (AssetPanel.CREATURE_PICTURE_SIZE - CREATURE_WIDTH)/2 + 1;
-    public static final int CREATURE_Y = 9;
+    public static final int CREATURE_Y = 8;
     public static final int ATTACK_STRING_X = 24;
     public static final int HP_STRING_X = 60;
     public static final int STATS_STRING_Y = 90;
@@ -47,6 +49,7 @@ public class CreatureDrawer {
     }
     
     public static void drawAttackNumbers(Creature c, Graphics g){
+        int textCenterNum = 0;
         if (c.getCurrentAtt() < c.getBaseAtt()){
             g.setColor(NERFED_STATS_COLOR);
         }
@@ -59,15 +62,18 @@ public class CreatureDrawer {
         
         if (c.getCurrentAtt() >= 1000){
             g.setFont(HIGH_STATS_FONT);
+            textCenterNum = -1;
         }
         else{
             g.setFont(STATS_FONT);
         }
-        
-        g.drawString(Long.toString(c.getCurrentAtt()), ATTACK_STRING_X, STATS_STRING_Y);
+        Graphics2D g2 = (Graphics2D)g;
+        g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
+        g2.drawString(Long.toString(c.getCurrentAtt()), ATTACK_STRING_X + textCenterNum, STATS_STRING_Y);
     }
     
     public static void drawHPNumbers(Creature c, Graphics g){
+        int textCenterNum = 0;//vertical centering for high numbers
         if (c.getCurrentHP() < c.getBaseHP()){
             g.setColor(NERFED_STATS_COLOR);
         }
@@ -80,12 +86,14 @@ public class CreatureDrawer {
         
         if (c.getCurrentHP() >= 1000){
             g.setFont(HIGH_STATS_FONT);
+            textCenterNum = -1;
         }
         else{
             g.setFont(STATS_FONT);
         }
-        
-        g.drawString(Integer.toString(c.getCurrentHP()), HP_STRING_X, STATS_STRING_Y);
+        Graphics2D g2 = (Graphics2D)g;
+        g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
+        g2.drawString(Integer.toString(c.getCurrentHP()), HP_STRING_X + textCenterNum, STATS_STRING_Y);
     }
     
     
@@ -111,7 +119,7 @@ public class CreatureDrawer {
     public static final int LEGENDARY_STAND_X = (AssetPanel.CREATURE_PICTURE_SIZE - LEGENDARY_STAND_WIDTH)/2;
     public static final int LEGENDARY_STAND_Y = 52;
     
-    public static final int ASCENDED_STAND_WIDTH = 83;
+    public static final int ASCENDED_STAND_WIDTH = 85;
     public static final int ASCENDED_STAND_HEIGHT = 56;
     public static final int ASCENDED_STAND_X = (AssetPanel.CREATURE_PICTURE_SIZE - ASCENDED_STAND_WIDTH)/2;
     public static final int ASCENDED_STAND_Y = 39;

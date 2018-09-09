@@ -32,7 +32,12 @@ public class CreaturePictureSelectionPanel extends CreaturePicturePanel implemen
     @Override
     public void mousePressed(MouseEvent e) {
         super.mousePressed(e);
-        frame.setMouseCreature(creature);
+        if (frame.getMouseCreature() == creature){
+            frame.setMouseCreature(null);
+        }
+        else{
+            frame.setMouseCreature(creature);
+        }
         frame.requestFocusInWindow();
     }
 

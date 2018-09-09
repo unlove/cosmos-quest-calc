@@ -24,7 +24,7 @@ public class TournamentOptimizer extends AISolver{//if (leprechaun) delete monst
     private TournamentRankings rankings;
     private boolean winnerTakeAll;
     private boolean buildingStage;
-    
+    private boolean containsLep;//for heroes that benifit from a non-full grid
     
     public TournamentOptimizer(TournamentOptimizerFrame frame){
         this.frame = frame;
@@ -69,7 +69,13 @@ public class TournamentOptimizer extends AISolver{//if (leprechaun) delete monst
     private void buildCompetition(){
         //create a random grid or alter one of the top grids
         if (rankings.size() >= 1 && Math.random() < 0.12){//experiment with percentage?
-            rankings.addGrid(TournamentGridGenerator.newAlteredGrid(rankings.getRandomTopGrid(0.10),followers,maxCreatures,(int)(Math.random()*1.5 + 1)));//returns a random grid from the top 10%
+            if (containsLep && Math.random() < 0.5){
+                TournamentGrid lepGrid = TournamentGridGenerator.deleteLepMonsters(rankings.getRandomTopGrid(0.10), followers, maxCreatures);
+                rankings.addGrid(TournamentGridGenerator.newAlteredGrid(lepGrid,followers,maxCreatures,(int)(Math.random()*1.5 + 1)));
+            }
+            else{
+                rankings.addGrid(TournamentGridGenerator.newAlteredGrid(rankings.getRandomTopGrid(0.10),followers,maxCreatures,(int)(Math.random()*1.5 + 1)));//returns a random grid from the top 10%
+            }
         }
         else{
             rankings.addGrid(TournamentGridGenerator.createRandomGrid(sortedHeroes,followers,numRows,maxCreatures));
@@ -99,6 +105,12 @@ public class TournamentOptimizer extends AISolver{//if (leprechaun) delete monst
         numRows = frame.getRows();
         winnerTakeAll = frame.isWinnerTakeAll();
         buildingStage = true;
+        
+        for (Hero h : heroes){
+            if (h.getName().equals("Leprechaun")){
+                containsLep = true;
+            }
+        }
         
         rankings = new TournamentRankings(determineRankingMaxSize(),frame.isWinnerTakeAll());
     }
@@ -186,7 +198,11 @@ public class TournamentOptimizer extends AISolver{//if (leprechaun) delete monst
             localGridWins = topGridWinsEver;
         }
         
-        TournamentGrid mutatedGrid = mutateGridForRefinement(topGridForRefinement);
+        TournamentGrid mutatedGrid = mutateGridForRefinement(topGridForRefinement,containsLep);
+        if (containsLep && Math.random() < 0.2){
+            mutatedGrid = TournamentGridGenerator.deleteLepMonsters(mutatedGrid,followers,maxCreatures);
+        }
+        
         
         //mutate the top grid once or mutate the original top grids mulltiple times (suggestion: to try to avoid local maximums. doing so might slow the process down, though)
         
@@ -234,7 +250,7 @@ public class TournamentOptimizer extends AISolver{//if (leprechaun) delete monst
         
     }
     
-    private TournamentGrid mutateGridForRefinement(TournamentGrid grid){
+    private TournamentGrid mutateGridForRefinement(TournamentGrid grid, boolean containsLep){
         if (Math.random() < 0.95){
             return TournamentGridGenerator.newAlteredGrid(grid,followers,maxCreatures,(int)(Math.random()*1.5 + 1));//sometimes 2
         }

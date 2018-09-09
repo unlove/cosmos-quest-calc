@@ -63,7 +63,7 @@ public class EnemyHeroesCustomizationPanel extends JPanel{
     private void load(){
         try{
             
-            Scanner sc = new Scanner(new File("save data.txt"));
+            Scanner sc = new Scanner(new File("save data/hero level data.txt"));
             sc.nextLine();//followers
             sc.nextLine();//max creatures
             

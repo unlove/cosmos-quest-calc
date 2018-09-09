@@ -8,7 +8,7 @@ import Formations.Formation;
 import Formations.Levelable;
 
 //decreaces AOE ability damage on formation by a specified percentage based on
-//level. Used by Bubbles and MOAK
+//level. Used by Bubbles
 public class ScaleableAntiAOE extends AntiAOE{
     
     private double levelMilestone;

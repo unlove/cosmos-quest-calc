@@ -17,13 +17,13 @@ import javax.swing.JPanel;
 
 public class HeroesCustomizationPanel extends JPanel{
     
-    private JFrame frame;
+    private ISolverFrame frame;
     
     
     private HeroCustomizationPanel[] heroPanelArray;
     private HashMap<String,HeroCustomizationPanel> map;//for finding the right hero panel when loading
 
-    public HeroesCustomizationPanel(JFrame frame, int numColumns, boolean facingRight, boolean includePrioritize) {//reference solver, not frame?***
+    public HeroesCustomizationPanel(ISolverFrame frame, int numColumns, boolean facingRight, boolean includePrioritize) {//reference solver, not frame?***
         this.frame = frame;
         
         map = new HashMap<>();
@@ -63,21 +63,44 @@ public class HeroesCustomizationPanel extends JPanel{
             panel.setLevel(level);
         }
     }
-
-    public void writeSaveString(PrintWriter file) {
+    
+    public void writeLevelString(PrintWriter file) {
         for (int i = 0; i < heroPanelArray.length - 1; i++){
-            heroPanelArray[i].writeHeroString(file);
+            heroPanelArray[i].writeHeroLevelString(file);
             file.print("\n");
         }
-        heroPanelArray[heroPanelArray.length - 1].writeHeroString(file);
+        heroPanelArray[heroPanelArray.length - 1].writeHeroLevelString(file);
     }
 
+    public void writeSelectString(PrintWriter file) {
+        for (int i = 0; i < heroPanelArray.length - 1; i++){
+            heroPanelArray[i].writeHeroSelectString(file);
+            file.print("\n");
+        }
+        heroPanelArray[heroPanelArray.length - 1].writeHeroSelectString(file);
+    }
+/*
     public void setHeroStats(String token, int level, boolean heroEnabled, boolean heroPrioritized) {
         HeroCustomizationPanel p = map.get(token);
         if (p != null){
             p.setLevel(level);
             p.setHeroEnabled(heroEnabled);
             p.setPrioritizeHero(heroPrioritized);
+        }
+    }
+   */ 
+    public void setHeroLevel(String name, int level){
+        HeroCustomizationPanel p = map.get(name);
+        if (p != null){
+            p.setLevel(level);
+        }
+    }
+    
+    public void setHeroSelect(String name, boolean enabled, boolean prioritized){
+        HeroCustomizationPanel p = map.get(name);
+        if (p != null){
+            p.setHeroEnabled(enabled);
+            p.setPrioritizeHero(prioritized);
         }
     }
     
@@ -138,6 +161,10 @@ public class HeroesCustomizationPanel extends JPanel{
     public boolean heroPrioritized(String hName) {
         return map.get(hName).heroPrioritized();
     }
+
+    
+
+    
 
     
     

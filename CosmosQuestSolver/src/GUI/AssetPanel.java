@@ -8,6 +8,7 @@ import Formations.Formation;
 import AI.QuestSolver;
 import Formations.Hero;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -32,7 +33,7 @@ import javax.swing.event.DocumentListener;
 // followers, and max creatures per row
 public class AssetPanel extends JPanel implements ActionListener, DocumentListener{
     
-    private JFrame frame;
+    private ISolverFrame frame;
     
     
     //private JLabel solutionLabel;
@@ -69,14 +70,13 @@ public class AssetPanel extends JPanel implements ActionListener, DocumentListen
     
     
     
-    public AssetPanel(JFrame frame,boolean includePrioritize){
+    public AssetPanel(ISolverFrame frame,boolean includePrioritize){
         this.frame = frame;
         
-        //solutionLabel = new JLabel("Solution");
-        //solutionFormationPanel = new SolutionFormationPanel(solver);
+        
         followersLabel = new JLabel("Followers");
         followersTextField = new JTextField("0");
-        maxCreaturesLabel = new JLabel("Creatures in row");
+        maxCreaturesLabel = new JLabel("Max creatures in row");
         maxCreaturesTextField = new JTextField(Integer.toString(Formation.MAX_MEMBERS));
         heroesCustomizationPanel = new HeroesCustomizationPanel(frame,HERO_SELECTION_COLUMNS,true,includePrioritize);
         heroesCustomizationScrollPane = new JScrollPane(heroesCustomizationPanel);
@@ -166,7 +166,7 @@ public class AssetPanel extends JPanel implements ActionListener, DocumentListen
         followersTextField.getDocument().addDocumentListener(this);
         maxCreaturesTextField.getDocument().addDocumentListener(this);
         
-        load();
+        load(frame.getSelectSource());
         
     }
     
@@ -286,7 +286,7 @@ public class AssetPanel extends JPanel implements ActionListener, DocumentListen
             case "set level all":
                 int level = 1;
                 try{
-                    String input = JOptionPane.showInputDialog(frame, "Enter level", 1);
+                    String input = JOptionPane.showInputDialog((Component) frame, "Enter level", 1);
                     if (input.equals("1k") || input.equals("1K")){
                         level = 1000;
                     }
@@ -297,19 +297,19 @@ public class AssetPanel extends JPanel implements ActionListener, DocumentListen
                         heroesCustomizationPanel.setLevelAll(level);
                     }
                     else{
-                        JOptionPane.showMessageDialog(frame, "Invalid level", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog((Component) frame, "Invalid level", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
                 catch(Exception ex){
-                    JOptionPane.showMessageDialog(frame, "Level needs to be an integer", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog((Component) frame, "Level needs to be an integer", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 
             break;
             case "save":
-                save();
+                save(frame.getSelectSource());
             break;
             case "load":
-                load();
+                load(frame.getSelectSource());
             break;
             default: System.out.println("AssetPanel actionCommand is different");
         }
@@ -318,45 +318,91 @@ public class AssetPanel extends JPanel implements ActionListener, DocumentListen
         frame.requestFocusInWindow();
     }
 
-    private void save() {
-        if (JOptionPane.showConfirmDialog(frame,"Save current heroes?","",JOptionPane.YES_NO_OPTION) != 0){
+    private void save(String fileSource) {
+        
+        if (JOptionPane.showConfirmDialog(this,"Save current heroes?","",JOptionPane.YES_NO_OPTION) != 0){
             return;
         }
         
         try{
-            PrintWriter file = new PrintWriter("save data.txt");
-            file.println(followers);
-            file.println(maxCreatures);
-            heroesCustomizationPanel.writeSaveString(file);
-            file.close();
+            PrintWriter creatureFollowersFile = new PrintWriter("save data/follower creature data.txt");
+            PrintWriter heroLevelsFile = new PrintWriter("save data/hero level data.txt");
+            PrintWriter heroSelectFile = new PrintWriter(fileSource);
+            
+            creatureFollowersFile.println(getFollowers());
+            creatureFollowersFile.println(getMaxCreatures());
+            writeLevelString(heroLevelsFile);
+            writeSelectString(heroSelectFile);
+            
+            creatureFollowersFile.close();
+            heroLevelsFile.close();
+            heroSelectFile.close();
         }
         catch(Exception e){
             System.out.println("failed to save");
         }
         
+        
     }
     
-    private void load(){
+    private void load(String fileSource){
         try{
-            Scanner sc = new Scanner(new File("save data.txt"));
-            followers = Long.parseLong(sc.nextLine());
-            followersTextField.setText(Long.toString(followers));
-            maxCreatures = Integer.parseInt(sc.nextLine());
-            maxCreaturesTextField.setText(Integer.toString(maxCreatures));
+            Scanner followersCreaturesScanner = new Scanner(new File("save data/follower creature data.txt"));
+            Scanner heroLevelsScanner = new Scanner(new File("save data/hero level data.txt"));
+            Scanner heroSelectScanner = new Scanner(new File(fileSource));
+            setFollowers(Long.parseLong(followersCreaturesScanner.nextLine()));
+            setMaxCreatures(Integer.parseInt(followersCreaturesScanner.nextLine()));
             
             String[] tokens;
-            while (sc.hasNext()){
-                tokens = sc.nextLine().split(",");
-                heroesCustomizationPanel.setHeroStats(tokens[0],Integer.parseInt(tokens[1]),Boolean.parseBoolean(tokens[2]),Boolean.parseBoolean(tokens[3]));
+            while (heroLevelsScanner.hasNext()){
+                tokens = heroLevelsScanner.nextLine().split(",");
+                setHeroLevel(tokens[0],Integer.parseInt(tokens[1]));
+                //heroesCustomizationPanel.setHeroSelect(tokens[0],Boolean.parseBoolean(tokens[2]),Boolean.parseBoolean(tokens[3]));
             }
+            while (heroSelectScanner.hasNext()){
+                tokens = heroSelectScanner.nextLine().split(",");
+                setHeroSelect(tokens[0],Boolean.parseBoolean(tokens[1]),Boolean.parseBoolean(tokens[2]));
+                //heroesCustomizationPanel.setHeroSelect(tokens[0],Boolean.parseBoolean(tokens[2]),Boolean.parseBoolean(tokens[3]));
+            }
+            
+            followersCreaturesScanner.close();
+            heroLevelsScanner.close();
+            heroSelectScanner.close();
         }
         catch(Exception e){
-            System.out.println("failed to load");
+            e.printStackTrace();
         }
+
+    }
+    
+    public void setMaxCreatures(int maxCreatures){
+        this.maxCreatures = maxCreatures;
+        maxCreaturesTextField.setText(Integer.toString(maxCreatures));
+    }
+    
+    public void setFollowers(long followers){
+        this.followers = followers;
+        followersTextField.setText(Long.toString(followers));
+    }
+    
+    public void setHeroLevel(String name, int level){
+        heroesCustomizationPanel.setHeroLevel(name,level);
+    }
+    
+    public void setHeroSelect(String name, boolean selected, boolean prioritized){
+        heroesCustomizationPanel.setHeroSelect(name,selected,prioritized);
     }
 
     boolean heroPrioritized(String hName) {
         return heroesCustomizationPanel.heroPrioritized(hName);
+    }
+
+    public void writeLevelString(PrintWriter heroLevelsFile) {
+        heroesCustomizationPanel.writeLevelString(heroLevelsFile);
+    }
+
+    public void writeSelectString(PrintWriter heroSelectFile) {
+        heroesCustomizationPanel.writeSelectString(heroSelectFile);
     }
 
     

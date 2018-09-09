@@ -16,13 +16,17 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.PrintWriter;
 import java.util.LinkedList;
+import java.util.Scanner;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
@@ -350,6 +354,11 @@ public class TournamentOptimizerFrame extends JFrame implements ISolverFrame, Do
     @Override
     public boolean showViewButton() {
         return false;
+    }
+
+    @Override
+    public String getSelectSource() {
+        return "save data/hero tournament select data.txt";
     }
     
 }

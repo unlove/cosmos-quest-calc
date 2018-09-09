@@ -97,7 +97,7 @@ public class WorldBossOptimizer extends AISolver{
             i ++;//debug
             if (i > nCrNum){//debug
                 //System.out.println(listNum + " " + creatureList.get(listNum));//debug
-                frame.recieveProgressString("Search now including " + (listNum+1) + ": " + creatureList.get(listNum).getName());
+                frame.recieveProgressString("Search now including creature " + (listNum+1) + ": " + creatureList.get(listNum).getName());
                 listNum ++;//debug
                 nCrNum = OtherThings.nCr(listNum, numCombinationCreatures);
             }//debug

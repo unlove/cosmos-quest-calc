@@ -39,10 +39,12 @@ public class WeirdHeroQuestSolver extends AISolver{// if more than one hero, sol
     
     @Override
     public void stopSearching() {
-        for (SpecialQuestSolver solver: solverList){
-            solver.stopSearching();
+        if (solverList != null){
+            for (SpecialQuestSolver solver: solverList){
+
+                solver.stopSearching();
+            }
         }
-        
         searching = false;
     }
     

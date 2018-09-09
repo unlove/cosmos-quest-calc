@@ -108,7 +108,7 @@ public class EnemyFormationPanel extends JPanel{
     }
     
     private void load(){
-        setFormation(CreatureFactory.loadFormation("quest formation data",facingRight));
+        setFormation(CreatureFactory.loadFormation("save data/quest formation data",facingRight));
         frame.parametersChanged();
     }
     

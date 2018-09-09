@@ -45,7 +45,7 @@ public class MonsterSelectionPanel extends JPanel implements ActionListener, Doc
     public static final int SCROLL_AMOUNT = 33;
     
 
-    public MonsterSelectionPanel(EnemySelectFrame frame, EnemyFormationMakerPanel enemyFormationMakerPanel, boolean facingRight) {
+    public MonsterSelectionPanel(EnemySelectFrame frame, EnemyFormationMakerPanel enemyFormationMakerPanel, boolean facingRight, boolean includeQuests) {
         this.frame = frame;
         this.enemyFormationMakerPanel = enemyFormationMakerPanel;
         
@@ -72,7 +72,12 @@ public class MonsterSelectionPanel extends JPanel implements ActionListener, Doc
         waterMonsterSelectionScrollPane.setPreferredSize(new Dimension(scrollPaneWidth,scrollPaneHeight));
         earthMonsterSelectionScrollPane.setPreferredSize(new Dimension(scrollPaneWidth,scrollPaneHeight));
         fireMonsterSelectionScrollPane.setPreferredSize(new Dimension(scrollPaneWidth,scrollPaneHeight));
-        elementSelectorPanel.setPreferredSize(new Dimension(ELEMENT_SELECTOR_PANEL_SIZE,ELEMENT_SELECTOR_PANEL_SIZE));
+        airMonsterSelectionScrollPane.setMaximumSize(new Dimension(scrollPaneWidth,scrollPaneHeight));
+        waterMonsterSelectionScrollPane.setMaximumSize(new Dimension(scrollPaneWidth,scrollPaneHeight));
+        earthMonsterSelectionScrollPane.setMaximumSize(new Dimension(scrollPaneWidth,scrollPaneHeight));
+        fireMonsterSelectionScrollPane.setMaximumSize(new Dimension(scrollPaneWidth,scrollPaneHeight));
+        elementSelectorPanel.setPreferredSize(new Dimension(ELEMENT_SELECTOR_PANEL_SIZE,ELEMENT_SELECTOR_PANEL_SIZE+35));
+        elementSelectorPanel.setMaximumSize(new Dimension(ELEMENT_SELECTOR_PANEL_SIZE,ELEMENT_SELECTOR_PANEL_SIZE+35));
         
         airMonsterSelectionScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         waterMonsterSelectionScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -92,13 +97,15 @@ public class MonsterSelectionPanel extends JPanel implements ActionListener, Doc
         
         setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
         
-        
-        add(questLabel);
-        add(questTextField);
-        add(questButton);
+        if (includeQuests){
+            add(questLabel);
+            add(questTextField);
+            add(questButton);
+        }
         
         questTextField.setColumns(3);
-        questTextField.setMaximumSize(new Dimension(20,20));
+        questTextField.setPreferredSize(new Dimension(30,20));
+        questTextField.setMaximumSize(new Dimension(30,20));
         questTextField.getDocument().addDocumentListener(this);
         
         setOpaque(false);

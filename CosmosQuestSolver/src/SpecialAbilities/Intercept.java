@@ -25,18 +25,11 @@ public class Intercept extends SpecialAbility{
     }
     
     @Override
-    public double alterIncomingDamage(double hit, double initialHit, Formation thisFormation, Formation enemyFormation) {//is this how it works?
-        if (owner != thisFormation.getFrontCreature()){//&& !dead?
+    public double alterIncomingDamage(double hit, double initialHit, Formation thisFormation, Formation enemyFormation) {
+        if (owner != thisFormation.getFrontCreature() && !owner.isDead()){
             double damageIntercepted = hit * interceptPercent;
-            if (damageIntercepted <= owner.getCurrentHP()){
-                owner.takeHit(owner, thisFormation, enemyFormation, damageIntercepted);
-                return hit - damageIntercepted;
-            }
-            else{//if cannot absorb all the damage
-                double hp = owner.getCurrentHP();
-                owner.takeHit(owner, thisFormation, enemyFormation, owner.getCurrentHP());
-                return hit - hp;
-            }
+            owner.takeHit(owner, thisFormation, enemyFormation, damageIntercepted);
+            return hit - damageIntercepted;
         }
         else{
             return hit;
@@ -52,7 +45,7 @@ public class Intercept extends SpecialAbility{
     
     @Override
     public int viability() {
-        return (int)(interceptPercent * Formation.MAX_MEMBERS * owner.getBaseHP() * owner.getBaseHP());
+        return (int)(interceptPercent * owner.getBaseHP() * owner.getBaseHP());
     }
     
 }

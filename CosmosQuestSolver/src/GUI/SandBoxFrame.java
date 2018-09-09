@@ -51,8 +51,8 @@ public class SandBoxFrame extends JFrame implements EnemySelectFrame, MouseListe
         };
         
         topPanel = new JPanel();
-        leftSelectionPanel = new EnemyFormationMakerPanel(this,"Left Formation",true,true,false,false);
-        rightSelectionPanel = new EnemyFormationMakerPanel(this,"Right Formation",false,false,true,true);
+        leftSelectionPanel = new EnemyFormationMakerPanel(this,"Your Formation",true,true,false,false,false);
+        rightSelectionPanel = new EnemyFormationMakerPanel(this,"Enemy Formation",false,false,true,true,true);
         
         simulationPanel = new SimulationPanel(this);
         

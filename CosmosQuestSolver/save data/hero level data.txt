@@ -1,0 +1,119 @@
+Hunter,99
+Shaman,99
+Alpha,51
+Carl,99
+Nimue,99
+Athos,52
+Jet,99
+Geron,99
+Rei,60
+Ailen,99
+Faefyr,99
+Auri,44
+K41RY,99
+T4URUS,99
+TR0N1X,99
+Aquortis,99
+Aeris,99
+Geum,99
+Rudean,99
+Aural,99
+Geror,48
+Ourea,99
+Erebus,99
+Pontus,99
+Oymos,99
+Xarth,99
+Atzar,55
+Hama,99
+Hallinskidi,99
+Rigr,99
+Toth,99
+Ganah,99
+Dagda,54
+Bylar,99
+Boor,99
+Bavah,57
+Taint,99
+Putrid,99
+Defile,38
+Ascended Alpha,1
+Ascended Athos,1
+Ascended Rei,1
+Ascended Auri,1
+Ascended TR0N1X,75
+Ascended Geum,70
+Ascended Geror,1
+Ascended Pontus,59
+Ascended Atzar,1
+Ascended Rigr,73
+Ascended Dagda,1
+Ascended Bavah,1
+Valor,99
+Rokka,99
+Pyromancer,99
+Bewat,99
+Nicte,99
+Forest Druid,99
+Ignitor,99
+Undine,99
+Chroma,99
+Petry,99
+Zaytus,99
+Lady Odelith,99
+Shygu,99
+Thert,99
+Lord Kirk,99
+Neptunius,99
+Hosokawa,99
+Takeda,99
+Hirate,99
+Hattori,99
+Mahatma,99
+Jade,99
+Edana,1
+Dybbuk,1
+Ascended Shygu,50
+Ascended Thert,1
+Ascended Lord Kirk,1
+Ascended Neptunius,1
+Veildur,2
+Brynhildr,1
+Groth,1
+Zeth,26
+Koth,1
+Gurth,1
+Sigrun,10
+Koldis,13
+Alvitr,17
+Arshen,1
+Rua,99
+Dorth,1
+Kumu san,1
+Liu Cheng,1
+Hidoka,1
+Master Lee,1
+James,1
+Werewolf,99
+Jack'o Knight,1
+Dullahan,1
+Christmas Elf,27
+Reindeer,12
+Santa Claus,5
+Sexy Santa,99
+Leprechaun,1
+Sparks,27
+Leaf,18
+Flynn,1
+Lady of Twilight,1
+Tiny,1
+Nebra,1
+Bubbles,1
+Dr Hawking,1
+Neil,99
+Dicemaster,1
+Luxurius Maximus,1
+Pokerface,1
+Spyke,1
+Aoyuki,1
+GaiaByte,1

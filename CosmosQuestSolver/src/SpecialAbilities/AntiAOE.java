@@ -7,7 +7,7 @@ import Formations.Creature;
 import Formations.Formation;
 
 //decreaces AOE ability damage on formation by a specified percentage.
-//this ability is currently unused, but the scaleable sub-class is.
+//used by MOAK
 public class AntiAOE extends SpecialAbility{
     
     protected double percent;

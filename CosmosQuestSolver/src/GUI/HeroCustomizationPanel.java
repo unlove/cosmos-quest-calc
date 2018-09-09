@@ -24,7 +24,7 @@ import javax.swing.plaf.LayerUI;
 
 public class HeroCustomizationPanel extends JPanel implements ActionListener, DocumentListener{
     
-    private JFrame frame;
+    private ISolverFrame frame;
     private Hero hero;
     
     private CreaturePicturePanel picturePanel;
@@ -36,7 +36,7 @@ public class HeroCustomizationPanel extends JPanel implements ActionListener, Do
     
     public static final int CHANGE_PANEL_SIZE = 30;
     
-    public HeroCustomizationPanel(JFrame frame, Hero hero, boolean includePrioritize){
+    public HeroCustomizationPanel(ISolverFrame frame, Hero hero, boolean includePrioritize){
         this.frame = frame;
         this.hero = hero;
         
@@ -185,14 +185,14 @@ public class HeroCustomizationPanel extends JPanel implements ActionListener, Do
         frame.repaint();
         //repaint();
     }
-    
-    
 
-    void writeHeroString(PrintWriter file) {
-        file.print(hero.getName() + "," + Integer.toString(hero.getLevel()) + "," + Boolean.toString(includeCheckBox.isSelected()) + "," + Boolean.toString(prioritizeCheckBox.isSelected()));
+    public void writeHeroLevelString(PrintWriter file) {
+        file.print(hero.getName() + "," + Integer.toString(hero.getLevel()));
     }
 
-    
+    public void writeHeroSelectString(PrintWriter file) {
+        file.print(hero.getName() + "," + Boolean.toString(includeCheckBox.isSelected()) + "," + Boolean.toString(prioritizeCheckBox.isSelected()));
+    }
 
     public boolean heroEnabled() {
         return includeCheckBox.isSelected();
@@ -205,6 +205,8 @@ public class HeroCustomizationPanel extends JPanel implements ActionListener, Do
     public Hero getHero() {
         return hero;
     }
+
+    
     
     private class DisableUI extends LayerUI<JComponent>{
         @Override

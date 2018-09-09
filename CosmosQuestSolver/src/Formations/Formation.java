@@ -3,6 +3,11 @@
  */
 package Formations;
 
+import SpecialAbilities.BloodBomb;
+import SpecialAbilities.Ricochet;
+import SpecialAbilities.ScaleableAOE;
+import SpecialAbilities.ScaleableStartingDamage;
+import SpecialAbilities.SpecialAbility;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -25,6 +30,25 @@ public class Formation implements Iterable<Creature>{
     private long seed = -1;//used for random skills. seed should be positive. if seed is needed, generate it
     
     private static final boolean DEBUG = false;//prints info when fighting
+
+    public void removeMonsters() {
+        for (int i = 0; i < members.size(); i ++){
+            if (members.get(i) instanceof Monster){
+                members.remove(i);
+                i --;
+            }
+        }
+    }
+
+    public boolean containsLepHeroes() {
+        for (int i = 0; i < members.size(); i ++){
+            SpecialAbility s = members.get(i).getSpecialAbility();
+            if (s instanceof Ricochet || s instanceof ScaleableAOE || s instanceof ScaleableStartingDamage || s instanceof BloodBomb){
+                return true;
+            }
+        }
+        return false;
+    }
     
     public static enum VictoryCondition{WIN,DRAW,LOSE};
     

@@ -68,10 +68,10 @@ public class QuestSolver extends AISolver{
     }
     
     //sorts the list of creatures so that the combination iterator can select the combinations most
-    //likely to produce a solution first. If heroe viability outweighs monster viability, sorts by viability.
+    //likely to produce a solution first. If hero viability outweighs monster viability, sorts by viability.
     //if monster viability is better, gives less priority to the stronger monsters since 6 weaker monsters
     //are usually better than one strong monster
-    private void sortCreatureList(LinkedList<Creature> creatureList){
+    private void sortCreatureList(LinkedList<Creature> creatureList){//debug for not all heroes being first over monsters*******
         int numStrongerHeroes = numHeroesStronger();//than average monster? 
         if (mindFollowers()){
             long averageFollowers = followers/(maxCreatures-numStrongerHeroes);
@@ -157,7 +157,7 @@ public class QuestSolver extends AISolver{
     }
 
     protected void progressReport(int listNum, LinkedList<Creature> creatureList) {
-        frame.recieveProgressString("Search now including " + (listNum+1) + ": " + creatureList.get(listNum).getName());
+        frame.recieveProgressString("Search now including creature " + (listNum+1) + ": " + creatureList.get(listNum).getName());
     }
 
     protected boolean proceedWithPermutations(LinkedList<Creature> combo) {//overritten by sub class

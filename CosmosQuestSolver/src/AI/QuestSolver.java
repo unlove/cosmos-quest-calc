@@ -60,7 +60,7 @@ public class QuestSolver extends AISolver{
     //gets a list of all creatures available, sorts them by viability, and
     //tests each possible combination until list is exhausted or solution is found.
     //tests formations most likeley to win (by heuristic) first
-    private void bestComboPermu(){
+    protected void bestComboPermu(){
         LinkedList<Creature> creatureList = getCreatureList();
         sortCreatureList(creatureList);
         sendCreatureList(creatureList);
@@ -71,7 +71,7 @@ public class QuestSolver extends AISolver{
     //likely to produce a solution first. If hero viability outweighs monster viability, sorts by viability.
     //if monster viability is better, gives less priority to the stronger monsters since 6 weaker monsters
     //are usually better than one strong monster
-    private void sortCreatureList(LinkedList<Creature> creatureList){//debug for not all heroes being first over monsters*******
+    protected void sortCreatureList(LinkedList<Creature> creatureList){//debug for not all heroes being first over monsters*******
         int numStrongerHeroes = numHeroesStronger();//than average monster? 
         if (mindFollowers()){
             long averageFollowers = followers/(maxCreatures-numStrongerHeroes);

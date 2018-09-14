@@ -44,10 +44,10 @@ public class ScaleableAOE extends AOE{
         }
         
         if (levelMilestone == 1){
-            return "Before every turn, Deal " + damage + " aoe every level";
+            return "After every turn, Deal " + damage + " aoe every level";
         }
         else{
-            return "Before every turn, Deal " + damage + " aoe every " + milestoneStr + " levels";
+            return "After every turn, Deal " + damage + " aoe every " + milestoneStr + " levels";
         }
     }
     

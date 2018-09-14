@@ -4,10 +4,9 @@
 package GUI;
 
 import Formations.Creature;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.SwingUtilities;
 
 //draws panel and lets you select a creature
 public class CreaturePictureSelectionPanel extends CreaturePicturePanel implements MouseListener{

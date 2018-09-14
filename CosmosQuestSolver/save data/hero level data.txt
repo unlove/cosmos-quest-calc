@@ -1,15 +1,15 @@
 Hunter,99
 Shaman,99
-Alpha,51
+Alpha,53
 Carl,99
 Nimue,99
-Athos,52
+Athos,53
 Jet,99
 Geron,99
-Rei,60
+Rei,62
 Ailen,99
 Faefyr,99
-Auri,44
+Auri,51
 K41RY,99
 T4URUS,99
 TR0N1X,99
@@ -18,30 +18,30 @@ Aeris,99
 Geum,99
 Rudean,99
 Aural,99
-Geror,48
+Geror,50
 Ourea,99
 Erebus,99
 Pontus,99
 Oymos,99
 Xarth,99
-Atzar,55
+Atzar,57
 Hama,99
 Hallinskidi,99
 Rigr,99
 Toth,99
 Ganah,99
-Dagda,54
+Dagda,56
 Bylar,99
 Boor,99
 Bavah,57
 Taint,99
 Putrid,99
-Defile,38
+Defile,41
 Ascended Alpha,1
 Ascended Athos,1
 Ascended Rei,1
 Ascended Auri,1
-Ascended TR0N1X,75
+Ascended TR0N1X,82
 Ascended Geum,70
 Ascended Geror,1
 Ascended Pontus,59
@@ -73,7 +73,7 @@ Mahatma,99
 Jade,99
 Edana,1
 Dybbuk,1
-Ascended Shygu,50
+Ascended Shygu,56
 Ascended Thert,1
 Ascended Lord Kirk,1
 Ascended Neptunius,1

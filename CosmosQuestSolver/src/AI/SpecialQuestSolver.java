@@ -9,7 +9,7 @@ import Formations.Hero;
 import GUI.QuestSolverFrame;
 import java.util.LinkedList;
 
-
+//used by WeirdHeroQuestSolver
 public class SpecialQuestSolver extends QuestSolver{
         
         private int originalMaxCreatures;
@@ -32,6 +32,14 @@ public class SpecialQuestSolver extends QuestSolver{
             prioritizedHeroes = frame.getPrioritizedHeroes();
             enemyFormation = frame.getEnemyFormation();
         }
+        
+        @Override
+        protected void bestComboPermu(){
+            if (maxCreatures != Formation.MAX_MEMBERS && maxCreatures >= enemyFormation.size() ){
+                return;
+            }
+            super.bestComboPermu();
+    }
         
         @Override
         protected void tooManyPrioritizedCreaturesMessage() {

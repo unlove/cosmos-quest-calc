@@ -58,13 +58,19 @@ public class EnemyFormationSinglePanel extends JPanel implements MouseListener{
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (frame.getMouseCreature() == null){
+        if (e.getButton() == MouseEvent.BUTTON2){//middle mouse to "copy"
+            //System.out.println("hi");
             frame.setMouseCreature(getCreature());
-            setCreature(null);
         }
         else{
-            setCreature(frame.getMouseCreature());
-            frame.setMouseCreature(null);
+            if (frame.getMouseCreature() == null){
+                frame.setMouseCreature(getCreature());
+                setCreature(null);
+            }
+            else{
+                setCreature(frame.getMouseCreature());
+                frame.setMouseCreature(null);
+            }
         }
         frame.parametersChanged();
         repaint();

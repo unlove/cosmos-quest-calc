@@ -200,7 +200,7 @@ public class TournamentOptimizer extends AISolver{//if (leprechaun) delete monst
         
         TournamentGrid mutatedGrid = mutateGridForRefinement(topGridForRefinement,containsLep);
         if (containsLep && Math.random() < 0.2){
-            mutatedGrid = TournamentGridGenerator.deleteLepMonsters(mutatedGrid,followers,maxCreatures);
+            mutatedGrid = TournamentGridGenerator.deleteLepMonsters(mutatedGrid,followers,maxCreatures);//if no lep, try something else?
         }
         
         

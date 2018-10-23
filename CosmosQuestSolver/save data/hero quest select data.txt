@@ -56,7 +56,7 @@ Bewat,false,false
 Nicte,false,false
 Forest Druid,false,false
 Ignitor,false,false
-Undine,true,false
+Undine,false,false
 Chroma,false,false
 Petry,false,false
 Zaytus,false,false
@@ -69,14 +69,18 @@ Hosokawa,true,false
 Takeda,true,false
 Hirate,true,false
 Hattori,true,false
-Mahatma,true,false
-Jade,true,false
+Mahatma,false,false
+Jade,false,false
 Edana,false,false
 Dybbuk,false,false
 Ascended Shygu,true,false
-Ascended Thert,false,false
+Ascended Thert,true,false
 Ascended Lord Kirk,false,false
 Ascended Neptunius,false,false
+Ascended Hosokawa,false,false
+Ascended Takeda,false,false
+Ascended Hirate,false,false
+Ascended Hattori,false,false
 Veildur,false,false
 Brynhildr,false,false
 Groth,false,false
@@ -92,7 +96,7 @@ Dorth,false,false
 Kumu san,false,false
 Liu Cheng,false,false
 Hidoka,false,false
-Master Lee,false,false
+Master Lee,true,false
 James,false,false
 Werewolf,true,false
 Jack'o Knight,false,false
@@ -113,7 +117,7 @@ Dr Hawking,false,false
 Neil,true,false
 Dicemaster,false,false
 Luxurius Maximus,false,false
-Pokerface,false,false
+Pokerface,true,false
 Spyke,false,false
 Aoyuki,false,false
 GaiaByte,false,false

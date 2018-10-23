@@ -136,6 +136,10 @@ public class EnemyFormationMakerPanel extends JPanel implements ActionListener, 
         return enemyFormationPanel.getEnemyFormation();
     }
 
+    public void setHeroLevels(int level) {
+        enemyHeroesCustomizationPanel.setLevelAll(level);
+    }
+
     
 
     

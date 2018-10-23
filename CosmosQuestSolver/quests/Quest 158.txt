@@ -1,0 +1,6 @@
+M,W,30
+H,Lady Odelith,1000
+H,Ignitor,1000
+H,Zaytus,1000
+H,Chroma,1000
+H,Forest Druid,1000

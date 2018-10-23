@@ -30,7 +30,7 @@ public class WeirdHeroQuestSolver extends AISolver{// if more than one hero, sol
     protected void search() {
         solverList = new LinkedList<>();
         for (int i = frame.getMaxCreatures(); i > 0; i--){
-            if (i == Formation.MAX_MEMBERS || i < frame.getEnemyFormation().size() ){//don't do non-full formations if lep's ability won't take effect
+            if (i == frame.getMaxCreatures() || i < frame.getEnemyFormation().size() ){//don't do non-full formations if lep's ability won't take effect
                 SpecialQuestSolver solver = new SpecialQuestSolver(frame,this,i,weirdHero);
                 solverList.add(solver);
                 new Thread(solver).start();

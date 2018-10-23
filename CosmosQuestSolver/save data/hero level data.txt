@@ -1,15 +1,15 @@
 Hunter,99
 Shaman,99
-Alpha,53
+Alpha,76
 Carl,99
 Nimue,99
-Athos,53
+Athos,69
 Jet,99
 Geron,99
-Rei,62
+Rei,84
 Ailen,99
 Faefyr,99
-Auri,51
+Auri,66
 K41RY,99
 T4URUS,99
 TR0N1X,99
@@ -18,35 +18,35 @@ Aeris,99
 Geum,99
 Rudean,99
 Aural,99
-Geror,50
+Geror,73
 Ourea,99
 Erebus,99
 Pontus,99
 Oymos,99
 Xarth,99
-Atzar,57
+Atzar,75
 Hama,99
 Hallinskidi,99
 Rigr,99
 Toth,99
 Ganah,99
-Dagda,56
+Dagda,77
 Bylar,99
 Boor,99
-Bavah,57
+Bavah,79
 Taint,99
 Putrid,99
-Defile,41
+Defile,60
 Ascended Alpha,1
 Ascended Athos,1
 Ascended Rei,1
 Ascended Auri,1
-Ascended TR0N1X,82
-Ascended Geum,70
+Ascended TR0N1X,87
+Ascended Geum,86
 Ascended Geror,1
-Ascended Pontus,59
+Ascended Pontus,87
 Ascended Atzar,1
-Ascended Rigr,73
+Ascended Rigr,76
 Ascended Dagda,1
 Ascended Bavah,1
 Valor,99
@@ -74,21 +74,25 @@ Jade,99
 Edana,1
 Dybbuk,1
 Ascended Shygu,56
-Ascended Thert,1
+Ascended Thert,78
 Ascended Lord Kirk,1
 Ascended Neptunius,1
+Ascended Hosokawa,1
+Ascended Takeda,1
+Ascended Hirate,1
+Ascended Hattori,1
 Veildur,2
 Brynhildr,1
 Groth,1
 Zeth,26
 Koth,1
 Gurth,1
-Sigrun,10
-Koldis,13
-Alvitr,17
+Sigrun,18
+Koldis,21
+Alvitr,23
 Arshen,1
 Rua,99
-Dorth,1
+Dorth,3
 Kumu san,1
 Liu Cheng,1
 Hidoka,1
@@ -113,7 +117,7 @@ Dr Hawking,1
 Neil,99
 Dicemaster,1
 Luxurius Maximus,1
-Pokerface,1
+Pokerface,99
 Spyke,1
 Aoyuki,1
 GaiaByte,1

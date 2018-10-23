@@ -80,6 +80,7 @@ public class QuestSolverFrame extends JFrame implements ISolverFrame, EnemySelec
         
         assetPanel = new AssetPanel(this,true);
         enemyFormationMakerPanel = new EnemyFormationMakerPanel(this,"Enemy Formation",false,false,true,false,true);
+        enemyFormationMakerPanel.setHeroLevels(1000);
         calculationPanel = new CalculationPanel(this);
         topPanel = new JPanel();
         solutionLabel = new JLabel("Solution");
@@ -271,7 +272,6 @@ public class QuestSolverFrame extends JFrame implements ISolverFrame, EnemySelec
     
     @Override
     public void recieveSolution(Formation f){
-        
         solutionFormationPanel.updateFormation(f);
         if (!f.isEmpty()){//called by calculationPanel to clear solution. not really a solution
             calculationPanel.recieveSolutionFound();
@@ -319,7 +319,7 @@ public class QuestSolverFrame extends JFrame implements ISolverFrame, EnemySelec
     @Override
     public AISolver makeSolver() {//if has leprecaun, return subclass****
         if (assetPanel.heroEnabled("Leprechaun")){//hard coded value. currently the only hero that needs this is lep.
-            return new WeirdHeroQuestSolver(this,"Leprechaun");
+            return new WeirdHeroQuestSolver(this,"Leprechaun");//difference in demo sollution and shown solution***
         }
         return new QuestSolver(this);
     }

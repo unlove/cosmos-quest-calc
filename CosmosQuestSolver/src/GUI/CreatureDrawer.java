@@ -24,7 +24,7 @@ public class CreatureDrawer {
     public static final int CREATURE_Y = 8;
     public static final int ATTACK_STRING_X = 24;
     public static final int HP_STRING_X = 60;
-    public static final int STATS_STRING_Y = 90;
+    public static final int STATS_STRING_Y = 89;
     public static final Font STATS_FONT = new Font("Courier", Font.BOLD, 10);
     public static final Font HIGH_STATS_FONT = new Font("Courier", Font.BOLD, 9);
     public static final Color NORMAL_STATS_COLOR = Color.WHITE;

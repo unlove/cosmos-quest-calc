@@ -27,7 +27,7 @@ public class Formation implements Iterable<Creature>{
     //in rare circumstances, armor might outweigh attack power, resulting in an
     //infinite loop. After a set amount of rounds, end the battle
     public static final int STALEMATE_CUTOFF_POINT = 100;
-    private long seed = -1;//used for random skills. seed should be positive. if seed is needed, generate it
+    private long seed = -1;//used for random skills. newSeed should be positive. if newSeed is needed, generate it
     
     private static final boolean DEBUG = false;//prints info when fighting
 
@@ -90,15 +90,45 @@ public class Formation implements Iterable<Creature>{
     }
     
     private long generateSeed(){
-        long seed = 1;
-        for (int i = 0; i < members.size(); i++){
-            seed = seed * Math.abs(members.get(i).getID()) + 1;
+        long newSeed = 1;
+        
+        
+        
+        for (int i = members.size()-1; i >= 0; i--){
+            newSeed = newSeed * Math.abs(members.get(i).getID()) + 1;
         }
-        return seed;
+        
+        //for each empty slot, do id=-1?
+        for (int i = 0; i < MAX_MEMBERS - members.size(); i ++){
+            newSeed += 1;
+        }
+        
+        return newSeed;
     }
     
+    /*
+    // Add monster to the back of the army
+        void add(const MonsterIndex m) {
+            this->monsters[monsterAmount] = m;
+            this->followerCost += monsterReference[m].cost;
+            this->monsterAmount++;
+            strength += pow(monsterReference[m].hp * monsterReference[m].damage, 1.5);
+
+            // Seed takes into account empty spaces with lane size 6, recalculated each time monster is added
+            // Any empty spaces are considered to be contiguous and frontmost as they are in DQ and quests
+            int64_t newSeed = 1;
+            for (int i = monsterAmount - 1; i >= 0; i--) {
+                newSeed = newSeed * abs(monsterReference[monsters[i]].index) + 1;
+            }
+            // Simplification of loop for empty monsters (id: -1) contiguous and frontmost
+            newSeed += 6 - monsterAmount;
+            this->seed = newSeed;
+        }
+    */
+    
+    //gets a pseudo-random number that skills with random componens each turn can use
     public long getTurnSeed(Formation otherFormation, int turnNumber){
-        long ans = (otherFormation.getSeed() + (long)Math.pow(101-turnNumber,3)) % ((int)Math.round((double)otherFormation.getSeed()/(101 - turnNumber) + (101 - turnNumber)*(101 - turnNumber)));
+        long ans = (otherFormation.getSeed() + (long)Math.pow(101-turnNumber,3)) % ((long)Math.round((double)otherFormation.getSeed()/(101 - turnNumber) + (101 - turnNumber)*(101 - turnNumber)));
         return Math.abs(ans);
     }
     

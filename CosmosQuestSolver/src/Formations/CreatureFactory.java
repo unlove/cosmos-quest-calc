@@ -10,6 +10,7 @@ import SpecialAbilities.Wither;
 import SpecialAbilities.BloodBomb;
 import SpecialAbilities.Revenge;
 import SpecialAbilities.CriticalHit;
+import SpecialAbilities.DamageOverflow;
 import SpecialAbilities.ElementDamageBoost;
 import SpecialAbilities.Heal;
 import SpecialAbilities.Intercept;
@@ -62,7 +63,7 @@ public class CreatureFactory {
     private static BufferedImage defaultImage;
     //private static int currentID;
 
-    public static final int MAX_QUESTS = 140;
+    public static final int MAX_QUESTS = 160;
 
     
     
@@ -512,6 +513,10 @@ public class CreatureFactory {
         addHero("Ascended Thert",new Hero(Creature.Element.EARTH,70,180,Hero.Rarity.ASCENDED,119,new ScaleableStatBoost(null,0,1,Creature.Element.EARTH,5.5)));
         addHero("Ascended Lord Kirk",new Hero(Creature.Element.FIRE,160,80,Hero.Rarity.ASCENDED,120,new ScaleableStatBoost(null,0,1,Creature.Element.FIRE,5.5)));
         addHero("Ascended Neptunius",new Hero(Creature.Element.WATER,175,75,Hero.Rarity.ASCENDED,121,new ScaleableStatBoost(null,0,1,Creature.Element.WATER,5.5)));
+        addHero("Ascended Hosokawa",new Hero(Creature.Element.AIR,124,106,Hero.Rarity.ASCENDED,122,new ScaleableStatBoost(null,1,0,Creature.Element.AIR,5.5)));
+        addHero("Ascended Takeda",new Hero(Creature.Element.EARTH,164,82,Hero.Rarity.ASCENDED,123,new ScaleableStatBoost(null,1,0,Creature.Element.EARTH,5.5)));
+        addHero("Ascended Hirate",new Hero(Creature.Element.FIRE,144,96,Hero.Rarity.ASCENDED,124,new ScaleableStatBoost(null,1,0,Creature.Element.FIRE,5.5)));
+        addHero("Ascended Hattori",new Hero(Creature.Element.WATER,126,114,Hero.Rarity.ASCENDED,125,new ScaleableStatBoost(null,1,0,Creature.Element.WATER,5.5)));
         
         //season heroes
         addHero("Veildur",new Hero(Creature.Element.EARTH,44,66,Hero.Rarity.LEGENDARY,33,new StatBoost(null,3,3,null)));
@@ -526,7 +531,7 @@ public class CreatureFactory {
         addHero("Arshen",new Hero(Creature.Element.AIR,36,74,Hero.Rarity.LEGENDARY,83,new Ricochet(null,1,1)));
         addHero("Rua",new Hero(Creature.Element.FIRE,40,78,Hero.Rarity.LEGENDARY,84,new Ricochet(null,1,1)));
         addHero("Dorth",new Hero(Creature.Element.WATER,44,82,Hero.Rarity.LEGENDARY,85,new Ricochet(null,1,1)));
-        addHero("Kumu san", new Hero(Creature.Element.FIRE,44,86,Hero.Rarity.LEGENDARY,103,new Reflect(null,0.2)));
+        addHero("Kumu san", new Hero(Creature.Element.FIRE,38,70,Hero.Rarity.LEGENDARY,103,new Reflect(null,0.2)));
         addHero("Liu Cheng", new Hero(Creature.Element.WATER,42,78,Hero.Rarity.LEGENDARY,104,new Reflect(null,0.25)));
         addHero("Hidoka", new Hero(Creature.Element.EARTH,44,86,Hero.Rarity.LEGENDARY,105,new Reflect(null,0.3)));
         addHero("Master Lee", new Hero(Creature.Element.AIR,90,150,Hero.Rarity.ASCENDED,102,new Reflect(null,0.5)));
@@ -549,7 +554,7 @@ public class CreatureFactory {
         addHero("Lady of Twilight",new Hero(Creature.Element.AIR,20,45,Hero.Rarity.COMMON,0,new StatBoost(null,3,3,null)));
         addHero("Tiny",new Hero(Creature.Element.EARTH,30,70,Hero.Rarity.RARE,1,new ScaleableLifeSteal(null,1,24)));
         addHero("Nebra",new Hero(Creature.Element.FIRE,40,110,Hero.Rarity.LEGENDARY,2,new StatBoost(null,20,0,null)));
-        addHero("Bubbles",new Hero(Creature.Element.WATER,110,300,Hero.Rarity.ASCENDED,80,new ScaleableAntiAOE(null,0.005,1)));
+        addHero("Bubbles",new Hero(Creature.Element.WATER,110,300,Hero.Rarity.ASCENDED,80,new ScaleableAntiAOE(null,0.005)));
         addHero("Dr Hawking", new Hero(Creature.Element.AIR,60,66,Hero.Rarity.LEGENDARY,101,new ScaleableStartingDamage(null,1,1)));
         addHero("Neil", new Hero(Creature.Element.WATER,15,150,Hero.Rarity.LEGENDARY,113,new Intercept(null,0.3)));
         addHero("Dicemaster", new Hero(Creature.Element.WATER,26,25,Hero.Rarity.COMMON,107,new RandomStatBoost(null,20)));
@@ -557,9 +562,9 @@ public class CreatureFactory {
         addHero("Pokerface", new Hero(Creature.Element.EARTH,70,70,Hero.Rarity.LEGENDARY,109,new CriticalHit(null,3)));
         
         //developer heroes
-        addHero("Spyke",new Hero(Creature.Element.AIR,45,75,Hero.Rarity.LEGENDARY,42,new AddAttack(null,5)));
-        addHero("Aoyuki",new Hero(Creature.Element.WATER,55,70,Hero.Rarity.LEGENDARY,43,new Rainbow(null,50,4)));
-        addHero("GaiaByte",new Hero(Creature.Element.EARTH,100,50,Hero.Rarity.LEGENDARY,44,new Wither(null,2)));
+        addHero("Spyke",new Hero(Creature.Element.AIR,45,75,Hero.Rarity.LEGENDARY,42,new AddAttack(null,10)));
+        addHero("Aoyuki",new Hero(Creature.Element.WATER,55,70,Hero.Rarity.LEGENDARY,43,new Rainbow(null,100,4)));
+        addHero("GaiaByte",new Hero(Creature.Element.EARTH,150,75,Hero.Rarity.LEGENDARY,44,new Wither(null,2)));
         
     }
     
@@ -571,6 +576,7 @@ public class CreatureFactory {
         addWorldBoss("Lord of Chaos",new WorldBoss(Creature.Element.FIRE,73,72,new AOE(null,20)));
         addWorldBoss("Mother of all Kodamas",new WorldBoss(Creature.Element.EARTH,125,87,new AntiAOE(null,0.5)));
         addWorldBoss("Kryton",new WorldBoss(Creature.Element.AIR,11,106,new AddAttack(null,10)));
+        addWorldBoss("Doyenne",new WorldBoss(Creature.Element.WATER,110,126,new DamageOverflow(null,5000)));
     }
     
     private void addMonster(String name, int elementNum, int tier, Monster monster){
@@ -670,7 +676,11 @@ public class CreatureFactory {
         if (name.equals("Ascended Shygu") || 
                 name.equals("Ascended Thert") || 
                 name.equals("Ascended Lord Kirk") || 
-                name.equals("Ascended Neptunius")){
+                name.equals("Ascended Neptunius") || 
+                name.equals("Ascended Hosokawa") || 
+                name.equals("Ascended Takeda") || 
+                name.equals("Ascended Hirate") || 
+                name.equals("Ascended Hattori")){
             return true;
         }
         else{

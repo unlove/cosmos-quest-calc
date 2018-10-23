@@ -80,5 +80,11 @@ public class EnemyHeroesCustomizationPanel extends JPanel{
             System.out.println("failed to load");
         }
     }
+
+    public void setLevelAll(int level) {
+        for (EnemyHeroCustomizationPanel panel : heroPanelArray){
+            panel.setLevel(level);
+        }
+    }
     
 }

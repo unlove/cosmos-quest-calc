@@ -72,7 +72,13 @@ public class Ricochet extends SpecialAbility{
     @Override
     public String getDescription() {
         String percent = Integer.toString((int)(multiplier * 100));
-        return "Ricochet " + percent + "% damage to next " + numBounces + " units";
+        if (numBounces == 1){
+            return "Ricochet " + percent + "% damage to next unit";
+        }
+        else{
+            return "Ricochet " + percent + "% damage to next " + numBounces + " units";
+        }
+        
     }
     
     @Override

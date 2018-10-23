@@ -23,7 +23,7 @@ public class ScaleableLifeSteal extends LifeSteal{
     public void postRoundAction(Formation thisFormation, Formation enemyFormation) {
         if (!deadOnStart && owner instanceof Levelable){
             Levelable levelable = (Levelable) owner;
-            enemyFormation.takeAOEDamage(amount * (int)(levelable.getLevel() / levelMilestone));
+            enemyFormation.takeAOEDamage(roundedScaleMilestone(levelable,amount,levelMilestone));
         }
         
     }
@@ -39,12 +39,15 @@ public class ScaleableLifeSteal extends LifeSteal{
     public void postRoundAction2(Formation thisFormation, Formation enemyFormation) {
         if (!deadOnStart && owner instanceof Levelable){
             Levelable levelable = (Levelable) owner;
-            thisFormation.AOEHeal(amount * (int)(levelable.getLevel() / levelMilestone), enemyFormation);
+            thisFormation.AOEHeal(roundedScaleMilestone(levelable,amount,levelMilestone), enemyFormation);
         }
     }
     
     @Override
     public String getDescription() {
+        if (!(owner instanceof Levelable)){
+            return "";
+        }
         String milestoneStr = "";
         if (levelMilestone % 1 == 0){
             milestoneStr = Integer.toString((int)levelMilestone);
@@ -53,7 +56,7 @@ public class ScaleableLifeSteal extends LifeSteal{
             milestoneStr = Double.toString(levelMilestone);
         }
         
-        return "+" + amount + " aoe & heal every " + milestoneStr + " lvl";
+        return "+" + amount + " aoe & heal every " + milestoneStr + " lvl" + " " + roundedScaleMilestoneStr((Levelable)owner,amount,levelMilestone);
     }
     
     @Override

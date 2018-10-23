@@ -55,7 +55,7 @@ public class Monster extends Creature {
             case FIRE: elementNum = 2;break;
             case WATER: elementNum = 3;break;
         }
-        return tier * Element.values().length + elementNum;
+        return (tier-1) * Element.values().length + elementNum;
     }
     
     @Override

@@ -5,7 +5,7 @@ package SpecialAbilities;
 
 import Formations.Creature;
 import Formations.Formation;
-import Formations.Hero;
+import Formations.Levelable;
 
 //all heroes possess a special ability that affects them and/or their teammates
 //in combat. Most special abilities have parameters, and many heroes share the same
@@ -45,6 +45,12 @@ public abstract class SpecialAbility {
     public void attack(Formation thisFormation, Formation enemyFormation) {
         enemyFormation.takeHit(owner,thisFormation);
     }
+    public void takeHit(Creature attacker,  Formation thisFormation, Formation enemyFormation, double hit) {//future special ability?
+        long longHit = (long)Math.ceil(hit);
+        recordDamageTaken(longHit);
+        attacker.getSpecialAbility().recordDamageDealt(longHit);
+        owner.changeHP(-hit,thisFormation);
+    }
     public double alterIncomingDamage(double hit, double initialHit, Formation thisFormation, Formation enemyFormation) {
         return hit;
     }
@@ -62,6 +68,14 @@ public abstract class SpecialAbility {
     }
     public void deathAction(Formation thisFormation, Formation enemyFormation){
         
+    }
+    
+    public static int roundedScaleMilestone(Levelable owner, double amount, double milestone){
+        return (int)((amount * (int)(owner.getLevel() / milestone)));
+    }
+    
+    public static String roundedScaleMilestoneStr(Levelable owner, double amount, double milestone){
+        return "(" + roundedScaleMilestone(owner,amount,milestone) + ")";
     }
     
     //heroes and special abilities have references to each other. This makes sure

@@ -34,8 +34,8 @@ public class ScaleableStatBoost extends StatBoost{
             Levelable levelable = (Levelable) owner;
             for (Creature creature : thisFormation){
                 if (element == null || creature.getElement() == element){
-                    creature.addAttBoost((attBoost * (int)(levelable.getLevel() / levelMilestone)));//round up?***
-                    creature.addArmorBoost((armorBoost * (int)(levelable.getLevel() / levelMilestone)));
+                    creature.addAttBoost(roundedScaleMilestone(levelable,attBoost,levelMilestone));//round up?***
+                    creature.addArmorBoost(roundedScaleMilestone(levelable,armorBoost,levelMilestone));
                 }
             }
         }
@@ -48,8 +48,8 @@ public class ScaleableStatBoost extends StatBoost{
             Levelable levelable = (Levelable) owner;
             for (Creature creature : thisFormation){
                 if (element == null || creature.getElement() == element){
-                    creature.addAttBoost(-(attBoost * (int)(levelable.getLevel() / levelMilestone)));//round up?***
-                    creature.addArmorBoost(-(armorBoost * (int)(levelable.getLevel() / levelMilestone)));
+                    creature.addAttBoost(-roundedScaleMilestone(levelable,attBoost,levelMilestone));//round up?***
+                    creature.addArmorBoost(-roundedScaleMilestone(levelable,armorBoost,levelMilestone));
                 }
             }
         }
@@ -59,6 +59,9 @@ public class ScaleableStatBoost extends StatBoost{
     
     @Override
     public String getDescription() {
+        if (!(owner instanceof Levelable)){
+            return "";
+        }
         String elementStr = "";
         if (element == null){
             elementStr = "all";
@@ -92,14 +95,14 @@ public class ScaleableStatBoost extends StatBoost{
         }
         
         if (attBoost != 0 && armorBoost == 0){
-            return "+" + attBoost + " attack to " + elementStr + " creatures every " + milestoneStr;
+            return "+" + attBoost + " attack to " + elementStr + " creatures every " + milestoneStr + " " + roundedScaleMilestoneStr((Levelable)owner,attBoost,levelMilestone);
         }
         else if (attBoost == 0 && armorBoost != 0){
-            return "+" + armorBoost + " armor to " + elementStr + " creatures every " + milestoneStr;
+            return "+" + armorBoost + " armor to " + elementStr + " creatures every " + milestoneStr + " " + roundedScaleMilestoneStr((Levelable)owner,armorBoost,levelMilestone);
         }
         else if (attBoost != 0 && armorBoost != 0){
             if (attBoost == armorBoost){
-                return "+" + attBoost + " armor & atk to " + elementStr + " creatures every " + milestoneStr;
+                return "+" + attBoost + " armor & atk to " + elementStr + " creatures every " + milestoneStr + " " + roundedScaleMilestoneStr((Levelable)owner,attBoost,levelMilestone);
             }
             else{
                 return ""; //todo. no creature has this yet

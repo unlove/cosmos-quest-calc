@@ -20,9 +20,9 @@ public class ScaleableAOE extends AOE{
     
     @Override
     public void postRoundAction(Formation thisFormation, Formation enemyFormation) {
-        if (owner instanceof Levelable){
+        if (!deadOnStart && owner instanceof Levelable){
             Levelable levelable = (Levelable) owner;
-            enemyFormation.takeAOEDamage((damage * (int)(levelable.getLevel() / levelMilestone)));
+            enemyFormation.takeAOEDamage(roundedScaleMilestone(levelable,damage,levelMilestone));
         }
     }
     
@@ -35,6 +35,9 @@ public class ScaleableAOE extends AOE{
     
     @Override
     public String getDescription() {
+        if (!(owner instanceof Levelable)){
+            return "";
+        }
         String milestoneStr = "";
         if (levelMilestone % 1 == 0){
             milestoneStr = Integer.toString((int)levelMilestone);
@@ -44,10 +47,10 @@ public class ScaleableAOE extends AOE{
         }
         
         if (levelMilestone == 1){
-            return "After every turn, Deal " + damage + " aoe every level";
+            return "After every turn, Deal " + damage + " aoe every level " + roundedScaleMilestoneStr((Levelable)owner,damage,levelMilestone);
         }
         else{
-            return "After every turn, Deal " + damage + " aoe every " + milestoneStr + " levels";
+            return "After every turn, Deal " + damage + " aoe every " + milestoneStr + " levels " + roundedScaleMilestoneStr((Levelable)owner,damage,levelMilestone);
         }
     }
     

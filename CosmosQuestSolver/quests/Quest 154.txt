@@ -1,0 +1,5 @@
+M,W,30
+M,A,30
+H,Undine,1000
+H,Zaytus,1000
+H,Ignitor,1000

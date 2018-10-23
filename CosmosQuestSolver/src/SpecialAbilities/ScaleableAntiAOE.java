@@ -11,11 +11,9 @@ import Formations.Levelable;
 //level. Used by Bubbles
 public class ScaleableAntiAOE extends AntiAOE{
     
-    private double levelMilestone;
     
-    public ScaleableAntiAOE(Creature owner, double amount, double levelMilestone) {
+    public ScaleableAntiAOE(Creature owner, double amount) {
         super(owner,amount);
-        this.levelMilestone = levelMilestone;
     }
     
     
@@ -24,14 +22,14 @@ public class ScaleableAntiAOE extends AntiAOE{
     
     @Override
     public SpecialAbility getCopyForNewOwner(Creature newOwner) {
-        return new ScaleableAntiAOE(newOwner,percent,levelMilestone);
+        return new ScaleableAntiAOE(newOwner,percent);
     }
     
     @Override
     public void startOfFightAction(Formation thisFormation, Formation enemyFormation) {
         if (owner instanceof Levelable){
             Levelable levelable = (Levelable) owner;
-            double AOEResistance = percent * (int)(levelable.getLevel() / levelMilestone);
+            double AOEResistance = percent * levelable.getLevel();
             if (AOEResistance > 1){
                 AOEResistance = 1;
             }
@@ -43,7 +41,7 @@ public class ScaleableAntiAOE extends AntiAOE{
     public void deathAction(Formation thisFormation, Formation enemyFormation) {
         if (owner instanceof Levelable){
             Levelable levelable = (Levelable) owner;
-            thisFormation.setAOEResistance(thisFormation.getAOEResistance() - percent * (int)(levelable.getLevel() / levelMilestone));
+            thisFormation.setAOEResistance(thisFormation.getAOEResistance() - percent * levelable.getLevel());
         }
     }
 
@@ -51,6 +49,9 @@ public class ScaleableAntiAOE extends AntiAOE{
     
     @Override
     public String getDescription() {
+        if (!(owner instanceof Levelable)){
+            return "";
+        }
         String percentStr = "";
         double times100 = percent * 100;
         if (times100 % 1 == 0){
@@ -60,13 +61,22 @@ public class ScaleableAntiAOE extends AntiAOE{
             percentStr = Double.toString(times100);
         }
         
-        if (levelMilestone == 1){
-            return "-" + percentStr + "% per level to area skills";
+        String percentLevelStr = "";
+        Levelable l = (Levelable)owner;
+        double times100Level = percent * 100 * l.getLevel();
+        if (times100Level % 1 == 0){
+            percentLevelStr = Integer.toString((int) times100Level);
         }
         else{
-            return "-" + percentStr + " per " + levelMilestone + " per level to area skills";
+            percentLevelStr = Double.toString(times100Level);
         }
+        
+        
+        return "-" + percentStr + "% per level to area skills (" + percentLevelStr + "%)";
+        
     }
+    
+    
     
     @Override
     public int viability() {

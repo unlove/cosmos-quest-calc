@@ -74,9 +74,13 @@ Jade,false,false
 Edana,false,false
 Dybbuk,false,false
 Ascended Shygu,false,false
-Ascended Thert,false,false
+Ascended Thert,true,false
 Ascended Lord Kirk,false,false
 Ascended Neptunius,false,false
+Ascended Hosokawa,false,false
+Ascended Takeda,false,false
+Ascended Hirate,false,false
+Ascended Hattori,false,false
 Veildur,true,false
 Brynhildr,false,false
 Groth,false,false

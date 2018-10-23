@@ -118,6 +118,11 @@ public class EnemyHeroCustomizationPanel extends JPanel implements DocumentListe
         }
         
     }
+
+    public void setLevel(int level) {
+        levelTextField.setText(Integer.toString(level));
+        levelHero();
+    }
     
     
     

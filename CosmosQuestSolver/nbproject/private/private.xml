@@ -8,9 +8,12 @@
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/ChatBox.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/ScaleableHeal.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/Purity.java</file>
+            <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/Formations/Levelable.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/Formations/Monster.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/AI/AISolver.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/ElementMonsterSelectionPanel.java</file>
+            <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/DamageOverflow.java</file>
+            <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/StartingDamage.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/AssetPanel.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/Formations/TournamentGrid.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/MultiplyAttack.java</file>
@@ -22,6 +25,7 @@
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/EnemyBossCustomizationPanel.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/AOE.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/Formations/BattleState.java</file>
+            <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/StatLevelBoost.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/CreaturePicturePanel.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/TournamentGridPanel.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/CalculationPanel.java</file>
@@ -32,15 +36,19 @@
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/EnemyFormationPanel.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/MonsterBuff.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/AI/TournamentOptimizer.java</file>
+            <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/SpecialAbility.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/BloodBomb.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/QuestSolverFrame.java</file>
+            <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/cosmosquestsolver/OtherThings.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/OutnumberedPercentDamage.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/AI/TournamentGridGenerator.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/EnemyHeroCustomizationPanel.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/EnemyHeroesCustomizationPanel.java</file>
+            <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/Revenge.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/CreatureDragFrame.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/WorldBossOptimizerFrame.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/SimulationPanel.java</file>
+            <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/CriticalHit.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/EnemyFormationMakerPanel.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/Heal.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/AntiAOE.java</file>
@@ -48,6 +56,7 @@
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/Ricochet.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/CreaturePictureSelectionPanel.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/SolutionFormationPanel.java</file>
+            <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/RandomTarget.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/StatBoost.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/AddAttack.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/ScaleableAntiAOE.java</file>
@@ -57,6 +66,7 @@
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/SandBoxFrame.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/ISolverFrame.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/AI/QuestSolver.java</file>
+            <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/RandomStatBoost.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/ScaleableStatBoost.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/LifeSteal.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/ScaleableAOE.java</file>

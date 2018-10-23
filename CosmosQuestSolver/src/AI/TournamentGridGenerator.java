@@ -375,11 +375,16 @@ public class TournamentGridGenerator {
         if (Math.random() < 0.5){
             newGrid = swapPlaces(grid);
         }
-        else{
-            newGrid = changeMonsterElement(grid,totalFollowers,maxCreatures);
+        else{//change monsters
+            if (Math.random() < 0.5){
+                newGrid = degradeMonster(grid,totalFollowers,maxCreatures);
+            }
+            else{
+                newGrid = changeMonsterElement(grid,totalFollowers,maxCreatures);
+            }
         }
         
-        
+        //recursive: change multiple times
         if (numChanges <= 1){
             return newGrid;
         }
@@ -463,6 +468,43 @@ public class TournamentGridGenerator {
         return newGrid;
     }
     
+    private static TournamentGrid degradeMonster(TournamentGrid grid, long totalFollowers, int maxCreatures){
+        
+        //get list of monsters
+        LinkedList<Creature> creatures = listFromGrid(grid);
+        if (!hasMonsters(creatures)){
+            return newAlteredGrid(grid,totalFollowers,maxCreatures,1);//try something else
+        }
+        
+        //select index of monster to change
+        int randomIndex;
+        do {
+            randomIndex = (int)(Math.random()*creatures.size());
+        }
+        while (!(creatures.get(randomIndex) instanceof Monster));
+        
+        int numberOfTiersLower = (int) (Math.random()*2.2) + 1;
+        
+        Monster selectedMonster = (Monster)creatures.get(randomIndex);
+        if (selectedMonster.getTier() <= numberOfTiersLower){
+            return newAlteredGrid(grid,totalFollowers,maxCreatures,1);//try something else
+        }
+        
+        
+        //get a lower tier monster
+        Monster newMonster = CreatureFactory.getMonster(selectedMonster.getElement(), selectedMonster.getTier()-numberOfTiersLower);
+        //System.out.println("degraded monster from " + selectedMonster.getName() + " to " + newMonster.getName());
+        
+        creatures.set(randomIndex, newMonster);
+        
+        upgradeCreatures(creatures,totalFollowers);
+        
+        TournamentGrid newGrid = gridFromList(creatures,null,0,0,grid.getFormations().size(),grid.getFormations().get(0).size());
+        newGrid.shuffleRows();
+        
+        return newGrid;
+    }
+    
     private static boolean hasMonsters(LinkedList<Creature> creatures){
         for (Creature c : creatures){
             if (c instanceof Monster){
@@ -487,7 +529,7 @@ public class TournamentGridGenerator {
         for (Formation f : copy.getFormations()){
             if (f.contains(CreatureFactory.getHero("Leprechaun", 1)) && f.containsLepHeroes()){
                 f.removeMonsters();
-                break;
+                break;//only one leprechaun exists, so stop after finding it
             }
         }
         LinkedList<Monster> monsters = extractMonsters(listFromGrid(copy));

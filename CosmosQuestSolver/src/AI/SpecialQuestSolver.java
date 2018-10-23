@@ -32,7 +32,7 @@ public class SpecialQuestSolver extends QuestSolver{
             prioritizedHeroes = frame.getPrioritizedHeroes();
             enemyFormation = frame.getEnemyFormation();
         }
-        
+        /*
         @Override
         protected void bestComboPermu(){
             if (maxCreatures != Formation.MAX_MEMBERS && maxCreatures >= enemyFormation.size() ){
@@ -40,6 +40,7 @@ public class SpecialQuestSolver extends QuestSolver{
             }
             super.bestComboPermu();
     }
+*/
         
         @Override
         protected void tooManyPrioritizedCreaturesMessage() {

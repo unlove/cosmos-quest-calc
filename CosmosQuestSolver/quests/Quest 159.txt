@@ -1,0 +1,6 @@
+H,Ignitor,1000
+H,Forest Druid,1000
+H,Petry,1000
+H,Chroma,1000
+H,Lady Odelith,1000
+H,Undine,1000

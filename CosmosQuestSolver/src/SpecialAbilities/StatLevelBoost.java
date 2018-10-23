@@ -27,15 +27,20 @@ public class StatLevelBoost extends SpecialAbility{
     @Override
     public void prepareForFight(Formation thisFormation, Formation enemyFormation) {//adjusts stats
         if (owner instanceof Levelable){
-            Levelable levelable = (Levelable) owner;
-            int newLevel = (int)(((levelable.getLevel() - 1) * multiplier) + 1);//rounding for non-integers?
-            int att = levelable.getLvl1Att();
-            int HP = levelable.getLvl1HP();
-            owner.setBaseAtt(Hero.attForLevel(newLevel, owner.getRarity(),att,HP));
-            owner.setBaseHP(Hero.HPForLevel(newLevel, owner.getRarity(),att,HP));
+            int[] newStats = getNewStats((Levelable) owner);
+            owner.setBaseAtt(newStats[0]);
+            owner.setBaseHP(newStats[1]);
             owner.setCurrentAtt(owner.getBaseAtt());
             owner.setCurrentHP(owner.getBaseHP());
         }
+    }
+    
+    private int[] getNewStats(Levelable l){
+        int newLevel = (int)(((l.getLevel() - 1) * multiplier) + 1);//rounding for non-integers?
+        int att = l.getLvl1Att();
+        int HP = l.getLvl1HP();
+        return new int[]{Hero.attForLevel(newLevel, owner.getRarity(),att,HP),Hero.HPForLevel(newLevel, owner.getRarity(),att,HP)};
+        
     }
     
     @Override
@@ -47,7 +52,14 @@ public class StatLevelBoost extends SpecialAbility{
         else{
             multString = Double.toString(multiplier);
         }
-        return "Stats gained per level x" + multString;
+        
+        if (owner instanceof Levelable){
+            int[] newStats = getNewStats((Levelable) owner);
+            return "Stats gained per level x" + multString + " (" + newStats[0] + "," + newStats[1] + ")";
+        }
+        else{
+            return "Stats gained per level x" + multString;
+        }
     }
     
     @Override

@@ -31,13 +31,16 @@ public class ScaleableHeal extends Heal{
     public void postRoundAction2(Formation thisFormation, Formation enemyFormation) {
         if (!deadOnStart && owner instanceof Levelable){
             Levelable levelable = (Levelable) owner;
-            thisFormation.AOEHeal(amount * (int)(levelable.getLevel() / levelMilestone), enemyFormation);
+            thisFormation.AOEHeal(roundedScaleMilestone(levelable,amount,levelMilestone), enemyFormation);
         }
         
     }
     
     @Override
     public String getDescription() {
+        if (!(owner instanceof Levelable)){
+            return "";
+        }
         String milestoneStr = "";
         if (levelMilestone % 1 == 0){
             milestoneStr = Integer.toString((int)levelMilestone);
@@ -47,10 +50,10 @@ public class ScaleableHeal extends Heal{
         }
         
         if (levelMilestone == 1){
-            return "Heals formation " + amount + " HP every level, every turn";
+            return "Heals formation " + amount + " HP every level, every turn " + roundedScaleMilestoneStr((Levelable)owner,amount,levelMilestone);
         }
         else{
-            return "Heals formation " + amount + " HP every " + milestoneStr + " levels every turn";
+            return "Heals formation " + amount + " HP every " + milestoneStr + " levels every turn " + roundedScaleMilestoneStr((Levelable)owner,amount,levelMilestone);
         }
     }
     

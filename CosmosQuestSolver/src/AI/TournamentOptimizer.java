@@ -69,7 +69,7 @@ public class TournamentOptimizer extends AISolver{//if (leprechaun) delete monst
     private void buildCompetition(){
         //create a random grid or alter one of the top grids
         if (rankings.size() >= 1 && Math.random() < 0.12){//experiment with percentage?
-            if (containsLep && Math.random() < 0.5){
+            if (containsLep && Math.random() < 0.17){
                 TournamentGrid lepGrid = TournamentGridGenerator.deleteLepMonsters(rankings.getRandomTopGrid(0.10), followers, maxCreatures);
                 rankings.addGrid(TournamentGridGenerator.newAlteredGrid(lepGrid,followers,maxCreatures,(int)(Math.random()*1.5 + 1)));
             }
@@ -182,7 +182,7 @@ public class TournamentOptimizer extends AISolver{//if (leprechaun) delete monst
     @Override
     public void recieveRefine() {
         buildingStage = false;
-        giveUpPointStart = winnerTakeAll ? 3400 : 500;//take number of rows into account?
+        giveUpPointStart = winnerTakeAll ? 3200 : 500;//take number of rows into account?
         giveUpPoint = giveUpPointStart;
         giveUpPointIncreace = (int)(giveUpPoint/150);
         //topGridForRefinement = rankings.getTopGrid().getCopy();
@@ -199,8 +199,8 @@ public class TournamentOptimizer extends AISolver{//if (leprechaun) delete monst
         }
         
         TournamentGrid mutatedGrid = mutateGridForRefinement(topGridForRefinement,containsLep);
-        if (containsLep && Math.random() < 0.2){
-            mutatedGrid = TournamentGridGenerator.deleteLepMonsters(mutatedGrid,followers,maxCreatures);//if no lep, try something else?
+        if (containsLep && Math.random() < 0.15){
+            mutatedGrid = TournamentGridGenerator.deleteLepMonsters(mutatedGrid,followers,maxCreatures);
         }
         
         
@@ -252,7 +252,7 @@ public class TournamentOptimizer extends AISolver{//if (leprechaun) delete monst
     
     private TournamentGrid mutateGridForRefinement(TournamentGrid grid, boolean containsLep){
         if (Math.random() < 0.95){
-            return TournamentGridGenerator.newAlteredGrid(grid,followers,maxCreatures,(int)(Math.random()*1.5 + 1));//sometimes 2
+            return TournamentGridGenerator.newAlteredGrid(grid,followers,maxCreatures,(int)(Math.random()*2.1 + 1));//sometimes 3
         }
         else{//get a grid from the top 5% and alter it several times
             return TournamentGridGenerator.newAlteredGrid(rankings.getRandomTopGrid(0.05).getCopy(),followers,maxCreatures,(int)(Math.random() * 10 + 5));

@@ -28,18 +28,21 @@ public class ScaleableStartingDamage extends StartingDamage{
         if (owner instanceof Levelable){
             Levelable levelable = (Levelable) owner;
             for (Creature creature : enemyFormation.getMembers()){
-                creature.takeAOEDamage((amount * (int)(levelable.getLevel() / levelMilestone)),thisFormation);
+                creature.takeAOEDamage(roundedScaleMilestone(levelable,amount,levelMilestone),thisFormation);
             }
         }
     }
     
     @Override
     public String getDescription() {
+        if (!(owner instanceof Levelable)){
+            return "";
+        }
         if (levelMilestone == 1){
-            return "At start, deal " + amount + " aoe per level";
+            return "At start, deal " + amount + " aoe per level " + roundedScaleMilestoneStr((Levelable)owner,amount,levelMilestone);
         }
         else{
-            return "At start, deal " + amount + " aoe every " + levelMilestone + " levels";
+            return "At start, deal " + amount + " aoe every " + levelMilestone + " levels " + roundedScaleMilestoneStr((Levelable)owner,amount,levelMilestone);
         }
     }
     

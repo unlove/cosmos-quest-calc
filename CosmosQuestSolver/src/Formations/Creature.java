@@ -20,11 +20,12 @@ public abstract class Creature implements Comparable<Creature>{
     protected SpecialAbility specialAbility;
     protected boolean facingRight = true;//for GUI. put in GUI class instead?
     protected int ID;//for quicker copying. Copying names of heroes was not nessesary for fights. Names can be accesed through a method in CreatureFactory.
+    //also used for rng skills
     
     protected boolean performedDeathAction = false;//put in specialAbility?
 
     
-    public static enum Element {AIR,WATER,EARTH,FIRE}
+    public static enum Element {AIR,WATER,EARTH,FIRE}//should this and ELEMENT_DAMAGE_BOOST be in its own class?
     public static final double ELEMENT_DAMAGE_BOOST = 1.5;
     
     protected Creature(){
@@ -157,14 +158,7 @@ public abstract class Creature implements Comparable<Creature>{
     }
     
 
-    public void takeHit(Creature attacker,  Formation thisFormation, Formation enemyFormation, double hit) {//future special ability?
-        //double hit = attacker.determineDamage(this,thisFormation,enemyFormation);
-        long longHit = (long)Math.ceil(hit);
-        specialAbility.recordDamageTaken(longHit);
-        attacker.specialAbility.recordDamageDealt(longHit);
-        changeHP(-hit,thisFormation);
-        
-    }
+    
     
     //actually changes HP directly
     public void changeHP(double damage, Formation thisFormation){
@@ -220,6 +214,10 @@ public abstract class Creature implements Comparable<Creature>{
     public void preRoundAction(Formation thisFormation, Formation enemyFormation) {//reseting buffs done elsewhere
         specialAbility.preRoundAction(thisFormation,enemyFormation);
     }
+    
+    public void takeHit(Creature attacker,  Formation thisFormation, Formation enemyFormation, double hit) {//future special ability?
+        specialAbility.takeHit(attacker, thisFormation, enemyFormation, hit);
+    }
 
     public void postRoundAction(Formation thisFormation, Formation enemyFormation) {//AOE takes effect even when dead
         specialAbility.postRoundAction(thisFormation,enemyFormation);
@@ -257,6 +255,15 @@ public abstract class Creature implements Comparable<Creature>{
             case EARTH: return Element.FIRE;
             case FIRE: return Element.WATER;
             default: return null;
+        }
+    }
+    
+    public double elementDamageMultiplier(Element elementAttacked){
+        if (elementWeakness(elementAttacked) == element){
+            return ELEMENT_DAMAGE_BOOST + specialAbility.getElementDamageBoost();
+        }
+        else{
+            return 1;
         }
     }
     

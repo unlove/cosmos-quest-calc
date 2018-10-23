@@ -45,7 +45,7 @@ public class Intercept extends SpecialAbility{
     
     @Override
     public int viability() {
-        return (int)(interceptPercent * owner.getBaseHP() * owner.getBaseHP());
+        return (int)(interceptPercent * owner.getBaseHP() * owner.getBaseHP() * 2);
     }
     
 }

@@ -74,9 +74,13 @@ Jade,true,false
 Edana,true,false
 Dybbuk,true,false
 Ascended Shygu,true,false
-Ascended Thert,false,false
-Ascended Lord Kirk,false,false
+Ascended Thert,true,false
+Ascended Lord Kirk,true,false
 Ascended Neptunius,false,false
+Ascended Hosokawa,false,false
+Ascended Takeda,false,false
+Ascended Hirate,false,false
+Ascended Hattori,false,false
 Veildur,true,false
 Brynhildr,false,false
 Groth,false,false
@@ -86,13 +90,13 @@ Gurth,false,false
 Sigrun,true,false
 Koldis,true,false
 Alvitr,true,false
-Arshen,false,false
+Arshen,true,false
 Rua,true,false
-Dorth,false,false
+Dorth,true,false
 Kumu san,false,false
 Liu Cheng,true,false
 Hidoka,false,false
-Master Lee,false,false
+Master Lee,true,false
 James,false,false
 Werewolf,true,false
 Jack'o Knight,false,false
@@ -111,9 +115,9 @@ Nebra,false,false
 Bubbles,false,false
 Dr Hawking,false,false
 Neil,true,true
-Dicemaster,false,false
+Dicemaster,true,false
 Luxurius Maximus,false,false
-Pokerface,false,false
+Pokerface,true,false
 Spyke,true,false
 Aoyuki,true,false
 GaiaByte,false,false

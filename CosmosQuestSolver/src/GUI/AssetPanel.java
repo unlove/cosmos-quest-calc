@@ -7,6 +7,7 @@ import AI.AISolver;
 import Formations.Formation;
 import AI.QuestSolver;
 import Formations.Hero;
+import cosmosquestsolver.OtherThings;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -131,7 +132,7 @@ public class AssetPanel extends JPanel implements ActionListener, DocumentListen
         //solutionFormationPanel.setPreferredSize(new Dimension(CREATURE_PICTURE_SIZE * Formation.MAX_MEMBERS,CREATURE_PICTURE_SIZE));
         //solutionFormationPanel.setMaximumSize(new Dimension(CREATURE_PICTURE_SIZE * Formation.MAX_MEMBERS,CREATURE_PICTURE_SIZE));
         //solutionFormationPanel.setMinimumSize(new Dimension(CREATURE_PICTURE_SIZE * Formation.MAX_MEMBERS,CREATURE_PICTURE_SIZE));
-        followersTextField.setMaximumSize(new Dimension(90,TEXTBOX_HEIGHT));
+        followersTextField.setMaximumSize(new Dimension(100,TEXTBOX_HEIGHT));
         maxCreaturesTextField.setMaximumSize(new Dimension(15,TEXTBOX_HEIGHT));
         //maxCreaturesTextField.setColumns(1);
         heroesCustomizationScrollPane.setPreferredSize(new Dimension(HERO_SELECTION_PANEL_WIDTH + 200,HERO_SELECTION_PANEL_HEIGHT));
@@ -228,7 +229,10 @@ public class AssetPanel extends JPanel implements ActionListener, DocumentListen
     
     private void followersTextFieldChanged(){
         try{
-            long tempFollowers = Long.parseLong(followersTextField.getText());
+            long followersEntered = parseFollowers(followersTextField.getText());
+            followersTextField.setForeground(Color.BLACK);
+            this.followers = followersEntered;
+            /*long tempFollowers = //Long.parseLong(followersTextField.getText());
             if (tempFollowers >= 0){
                 followersTextField.setForeground(Color.BLACK);
                 this.followers = tempFollowers;
@@ -237,6 +241,7 @@ public class AssetPanel extends JPanel implements ActionListener, DocumentListen
             else{
                 throw new Exception();
             }
+*/
         }
         catch (Exception ex){
             followersTextField.setForeground(Color.RED);
@@ -248,6 +253,40 @@ public class AssetPanel extends JPanel implements ActionListener, DocumentListen
         catch(Exception ex){
             
         }
+    }
+    
+    //parses the entry into a number, with comma and k,m,b functionality
+    private long parseFollowers(String str) throws Exception{
+        //remove commas
+        str = str.replaceAll(",","");
+        
+        //remove k,m,b, adjust multiplier accordingly
+        long multiplier = 1;
+        char lastChar = str.charAt(str.length()-1);
+        while (Character.isLetter(lastChar)){
+            str = str.substring(0, str.length()-1);
+            multiplier *= letterToNum(lastChar);
+            lastChar = str.charAt(str.length()-1);
+        }
+        
+        
+        
+        //parse, multiply by multiplier, and return
+        double ans = Double.parseDouble(str);
+        ans *= multiplier;
+        if(ans < 0){
+            throw new Exception();
+        }
+        return (long) ans;
+    }
+    
+    private long letterToNum(char c) throws Exception{
+        switch (c){
+            case 'k': case 'K': return 1000;
+            case 'm': case 'M': return 1000000;
+            case 'b': case 'B': return 1000000000;
+        }
+        throw new Exception();
     }
     
     private void maxCreaturesTextFieldChanged(){
@@ -329,8 +368,8 @@ public class AssetPanel extends JPanel implements ActionListener, DocumentListen
             PrintWriter heroLevelsFile = new PrintWriter("save data/hero level data.txt");
             PrintWriter heroSelectFile = new PrintWriter(fileSource);
             
-            creatureFollowersFile.println(getFollowers());
-            creatureFollowersFile.println(getMaxCreatures());
+            creatureFollowersFile.println(followers);
+            creatureFollowersFile.println(maxCreatures);
             writeLevelString(heroLevelsFile);
             writeSelectString(heroSelectFile);
             
@@ -382,7 +421,7 @@ public class AssetPanel extends JPanel implements ActionListener, DocumentListen
     
     public void setFollowers(long followers){
         this.followers = followers;
-        followersTextField.setText(Long.toString(followers));
+        followersTextField.setText(OtherThings.intToCommaString(followers));
     }
     
     public void setHeroLevel(String name, int level){

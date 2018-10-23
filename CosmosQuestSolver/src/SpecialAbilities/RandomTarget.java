@@ -29,10 +29,12 @@ public class RandomTarget extends SpecialAbility{
     }
     
     @Override
-    public void preRoundAction(Formation thisFormation, Formation enemyFormation){
+    public void postRoundAction(Formation thisFormation, Formation enemyFormation){
         turn ++;
     }
     
+    //Bubbles currently dampens lux damage if not targeting first according to game code, interaction should be added if this doesn't change
+    //does element advantage apply to target or front monster? I think front monster
     @Override
     public void attack(Formation thisFormation, Formation enemyFormation) {//attacks a "random" enemy
         int position = (int)(thisFormation.getTurnSeed(enemyFormation, turn) % enemyFormation.size());

@@ -42,7 +42,7 @@ public class Revenge extends SpecialAbility{
     @Override
     public String getDescription() {
         String percent = Integer.toString((int)(multiplier * 100));
-        return "Deals " + percent + "% attack after dying";
+        return "Deals " + percent + "% attack as aoe after dying (" + Integer.toString((int)(Math.round(owner.getBaseAtt() * multiplier))) + ")"; //amount?
     }
     
     @Override

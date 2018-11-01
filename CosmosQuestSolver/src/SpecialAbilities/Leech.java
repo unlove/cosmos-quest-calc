@@ -45,7 +45,8 @@ public class Leech extends SpecialAbility {
 
     @Override
     public int viability() {
-        return owner.getBaseHP() * owner.getBaseAtt() * (int)(owner.getBaseHP() * multiplier);
+        return (int)(owner.getBaseHP() + (owner.getBaseHP() * multiplier)) 
+                * owner.getBaseAtt();
     }
     
 }

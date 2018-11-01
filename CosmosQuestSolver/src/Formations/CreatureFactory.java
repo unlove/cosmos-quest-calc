@@ -8,6 +8,9 @@ import SpecialAbilities.AddAttack;
 import SpecialAbilities.AntiAOE;
 import SpecialAbilities.Wither;
 import SpecialAbilities.BloodBomb;
+import SpecialAbilities.DeathStrike;
+import SpecialAbilities.Leech;
+import SpecialAbilities.Evolve;
 import SpecialAbilities.Revenge;
 import SpecialAbilities.CriticalHit;
 import SpecialAbilities.DamageOverflow;
@@ -549,6 +552,9 @@ public class CreatureFactory {
         addHero("Sparks",new Hero(Creature.Element.FIRE,30,30,Hero.Rarity.COMMON,97,new StatLevelBoost(null,2)));
         addHero("Leaf",new Hero(Creature.Element.EARTH,42,48,Hero.Rarity.RARE,98,new StatLevelBoost(null,2)));
         addHero("Flynn",new Hero(Creature.Element.AIR,48,70,Hero.Rarity.LEGENDARY,99,new StatLevelBoost(null,2)));
+        addHero("Billy",new Hero(Creature.Element.EARTH,40,30,Hero.Rarity.COMMON,127,new DeathStrike(null,100)));
+        addHero("Sanqueen",new Hero(Creature.Element.WATER,20,88,Hero.Rarity.RARE,128,new Leech(null,0.8)));
+        addHero("Cliodhna",new Hero(Creature.Element.AIR,60,150,Hero.Rarity.LEGENDARY,129,new Evolve(null,1.0)));
         
         //other heroes
         addHero("Lady of Twilight",new Hero(Creature.Element.AIR,20,45,Hero.Rarity.COMMON,0,new StatBoost(null,3,3,null)));

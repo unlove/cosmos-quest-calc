@@ -6,19 +6,33 @@ package GUI;
 import AI.AISolver;
 import Formations.CreatureFactory;
 import Formations.Hero;
+import static GUI.AssetPanel.TEXTBOX_HEIGHT;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.LinkedList;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 
-public class HeroesCustomizationPanel extends JPanel{
+public class HeroesCustomizationPanel extends JPanel implements IFilterFrame, DocumentListener {
     
     private ISolverFrame frame;
     
+    private String filter = "";
+    
+    private JTextField searchText;
+    private JPanel searchPanel;
     
     private HeroCustomizationPanel[] heroPanelArray;
     private HashMap<String,HeroCustomizationPanel> map;//for finding the right hero panel when loading
@@ -28,7 +42,17 @@ public class HeroesCustomizationPanel extends JPanel{
         
         map = new HashMap<>();
         
+        searchText = new JTextField("");
+        searchPanel = new JPanel();
+        
+        searchPanel.setLayout(new BoxLayout(searchPanel,BoxLayout.X_AXIS));
+        
+        searchPanel.add(searchText);
+        
         setLayout(new GridLayout(0,numColumns));
+        searchText.setMaximumSize(new Dimension(100,TEXTBOX_HEIGHT));
+        searchText.getDocument().addDocumentListener(this);
+        add(searchPanel);
         
         Hero[] heroes = CreatureFactory.getHeroes();
         heroPanelArray = new HeroCustomizationPanel[heroes.length];
@@ -160,6 +184,79 @@ public class HeroesCustomizationPanel extends JPanel{
 
     public boolean heroPrioritized(String hName) {
         return map.get(hName).heroPrioritized();
+    }
+
+    @Override
+    public String getFilter() {
+        return filter;
+    }
+
+    @Override
+    public void filterChanged() {
+        for(int i = 0; i < heroPanelArray.length; i++){
+            String heroName = heroPanelArray[i].getHero().getName().toLowerCase();
+            if (!heroName.startsWith(getFilter()))
+            {
+                heroPanelArray[i].setVisible(false);
+            }
+            else
+            {
+                heroPanelArray[i].setVisible(true);
+            }
+        }
+    }
+
+    @Override
+    public void insertUpdate(DocumentEvent e) {
+        textFieldChanged(e);
+    }
+
+    @Override
+    public void removeUpdate(DocumentEvent e) {
+        textFieldChanged(e);
+    }
+
+    @Override
+    public void changedUpdate(DocumentEvent e) {
+        textFieldChanged(e);
+    }
+    
+    public void textFieldChanged(DocumentEvent e){
+        if (e.getDocument() == searchText.getDocument()){
+            searchTextChanged();
+        }
+        else{
+            System.out.println("Unknown Document in heroesCustomizationPanel!");
+        }
+        
+    }
+
+    private void searchTextChanged() {
+        try{
+            String searchEntered = searchText.getText().toLowerCase();
+            searchText.setForeground(Color.BLACK);
+            this.filter = searchEntered;
+            /*long tempFollowers = //Long.parseLong(followersTextField.getText());
+            if (tempFollowers >= 0){
+                followersTextField.setForeground(Color.BLACK);
+                this.followers = tempFollowers;
+                
+            }
+            else{
+                throw new Exception();
+            }
+*/
+        }
+        catch (Exception ex){
+            searchText.setForeground(Color.RED);
+        }
+        try{
+            IFilterFrame f = (IFilterFrame) this;//have ISolverFrame be an abstract class instead?
+            f.filterChanged();
+        }
+        catch(Exception ex){
+            
+        }
     }
 
     

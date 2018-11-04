@@ -53,6 +53,10 @@ public class AssetPanel extends JPanel implements ActionListener, DocumentListen
     private JButton setLevelButton;
     private JButton saveButton;
     private JButton loadButton;
+    private JButton commonButton;
+    private JButton rareButton;
+    private JButton legendaryButton;
+    private JButton ascendedButton;
     
     private long followers = 0;
     private int maxCreatures = Formation.MAX_MEMBERS;
@@ -89,18 +93,32 @@ public class AssetPanel extends JPanel implements ActionListener, DocumentListen
         setLevelButton = new JButton("Set Level All");
         saveButton = new JButton("Save");
         loadButton = new JButton("Load");
+        commonButton = new JButton("C");
+        rareButton = new JButton("R");
+        legendaryButton = new JButton("L");
+        ascendedButton = new JButton("A");
         
         disableAllButton.addActionListener(this);
         deprioritizeAllButton.addActionListener(this);
         setLevelButton.addActionListener(this);
         saveButton.addActionListener(this);
         loadButton.addActionListener(this);
+        
+        commonButton.addActionListener(this);
+        rareButton.addActionListener(this);
+        legendaryButton.addActionListener(this);
+        ascendedButton.addActionListener(this);
+        
         disableAllButton.setActionCommand("disable all");
         deprioritizeAllButton.setActionCommand("deprioritize all");
         setLevelButton.setActionCommand("set level all");
         saveButton.setActionCommand("save");
         loadButton.setActionCommand("load");
         
+        commonButton.setActionCommand("commons");
+        rareButton.setActionCommand("rares");
+        legendaryButton.setActionCommand("legendaries");
+        ascendedButton.setActionCommand("ascended");
         
         followersPanel = new JPanel();
         maxCreaturesPanel = new JPanel();
@@ -120,6 +138,10 @@ public class AssetPanel extends JPanel implements ActionListener, DocumentListen
         optionsPanel.add(setLevelButton);
         optionsPanel.add(saveButton);
         optionsPanel.add(loadButton);
+        optionsPanel.add(commonButton);
+        optionsPanel.add(rareButton);
+        optionsPanel.add(legendaryButton);
+        optionsPanel.add(ascendedButton);
         
         //add(solutionLabel);
         //add(solutionFormationPanel);
@@ -160,6 +182,16 @@ public class AssetPanel extends JPanel implements ActionListener, DocumentListen
         assetLabel.setFont(new Font("Courier", Font.PLAIN, 22));
         followersLabel.setFont(new Font("Courier", Font.PLAIN, 22));
         maxCreaturesLabel.setFont(new Font("Courier", Font.PLAIN, 22));
+        
+        Color commonColor = new Color(66,111,129);
+        Color rareColor = new Color(121,83,142);
+        Color legendaryColor = new Color(199,137,55);
+        
+        commonButton.setBackground(commonColor);
+        rareButton.setBackground(rareColor);
+        legendaryButton.setBackground(legendaryColor);
+        ascendedButton.setBackground(Color.LIGHT_GRAY);
+        
         //assetLabel.setHorizontalAlignment(JLabel.CENTER);
         //followersLabel.setHorizontalAlignment(JLabel.CENTER);
         //maxCreaturesLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -349,6 +381,18 @@ public class AssetPanel extends JPanel implements ActionListener, DocumentListen
             break;
             case "load":
                 load(frame.getSelectSource());
+            break;
+            case "commons":
+                heroesCustomizationPanel.enableRarity(Hero.Rarity.COMMON);
+            break;
+            case "rares":
+                heroesCustomizationPanel.enableRarity(Hero.Rarity.RARE);
+            break;
+            case "legendaries":
+                heroesCustomizationPanel.enableRarity(Hero.Rarity.LEGENDARY);
+            break;
+            case "ascended":
+                heroesCustomizationPanel.enableRarity(Hero.Rarity.ASCENDED);
             break;
             default: System.out.println("AssetPanel actionCommand is different");
         }

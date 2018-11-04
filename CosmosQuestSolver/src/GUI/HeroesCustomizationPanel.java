@@ -6,8 +6,11 @@ package GUI;
 import AI.AISolver;
 import Formations.CreatureFactory;
 import Formations.Hero;
+import Formations.Hero.Rarity;
+import static GUI.AssetPanel.HERO_SELECTION_COLUMNS;
 import static GUI.AssetPanel.TEXTBOX_HEIGHT;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -21,8 +24,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SpringLayout;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import static javax.swing.text.StyleConstants.setBackground;
 
 
 public class HeroesCustomizationPanel extends JPanel implements IFilterFrame, DocumentListener {
@@ -36,21 +41,23 @@ public class HeroesCustomizationPanel extends JPanel implements IFilterFrame, Do
     
     private HeroCustomizationPanel[] heroPanelArray;
     private HashMap<String,HeroCustomizationPanel> map;//for finding the right hero panel when loading
+    
 
     public HeroesCustomizationPanel(ISolverFrame frame, int numColumns, boolean facingRight, boolean includePrioritize) {//reference solver, not frame?***
         this.frame = frame;
         
         map = new HashMap<>();
         
+        JLabel searchLabel = new JLabel("Search");
         searchText = new JTextField("");
         searchPanel = new JPanel();
         
-        searchPanel.setLayout(new BoxLayout(searchPanel,BoxLayout.X_AXIS));
-        
+        searchPanel.setLayout(new BoxLayout(searchPanel,BoxLayout.Y_AXIS));
+        searchPanel.add(searchLabel);
         searchPanel.add(searchText);
         
         setLayout(new GridLayout(0,numColumns));
-        searchText.setMaximumSize(new Dimension(100,TEXTBOX_HEIGHT));
+        searchText.setMaximumSize(new Dimension(200,TEXTBOX_HEIGHT));
         searchText.getDocument().addDocumentListener(this);
         add(searchPanel);
         
@@ -62,12 +69,7 @@ public class HeroesCustomizationPanel extends JPanel implements IFilterFrame, Do
             add(heroPanelArray[i]);
             map.put(heroes[i].getName(),heroPanelArray[i]);
         }
-        
-        int height = (AssetPanel.CREATURE_PICTURE_SIZE + HeroCustomizationPanel.CHANGE_PANEL_SIZE) * (int)(Math.ceil((heroPanelArray.length - 1) / numColumns));
-        setPreferredSize(new Dimension(AssetPanel.HERO_SELECTION_PANEL_WIDTH,height));
-        setMaximumSize(new Dimension(AssetPanel.HERO_SELECTION_PANEL_WIDTH,height));
-        //setOpaque(false);
-        
+
     }
 
     public void disableAll() {
@@ -85,6 +87,19 @@ public class HeroesCustomizationPanel extends JPanel implements IFilterFrame, Do
     public void setLevelAll(int level) {
         for (HeroCustomizationPanel panel : heroPanelArray){
             panel.setLevel(level);
+        }
+    }
+    
+    public void enableRarity(Rarity rarity) {
+        for (HeroCustomizationPanel panel : heroPanelArray){
+            if (panel.getHero().getRarity() == rarity)
+            {
+                panel.setHeroEnabled(true);
+            }
+            else
+            {
+                panel.setHeroEnabled(false);
+            }
         }
     }
     
@@ -163,9 +178,7 @@ public class HeroesCustomizationPanel extends JPanel implements IFilterFrame, Do
                 heroes.add((Hero)heroPanelArray[i].getHero().getCopy());
             }
         }
-        
         return convertToArray(heroes);
-        
     }
     
     private Hero[] convertToArray(LinkedList<Hero> heroes){
@@ -194,16 +207,14 @@ public class HeroesCustomizationPanel extends JPanel implements IFilterFrame, Do
     @Override
     public void filterChanged() {
         for(int i = 0; i < heroPanelArray.length; i++){
-            String heroName = heroPanelArray[i].getHero().getName().toLowerCase();
-            if (!heroName.startsWith(getFilter()))
+            String heroName = heroPanelArray[i].getHero().getName();
+            String heroNameLow = heroName.toLowerCase();
+            if (!heroNameLow.startsWith(getFilter()))
             {
-                heroPanelArray[i].setVisible(false);
-            }
-            else
-            {
-                heroPanelArray[i].setVisible(true);
+                remove(heroPanelArray[i]);
             }
         }
+        repaint();
     }
 
     @Override
@@ -228,7 +239,6 @@ public class HeroesCustomizationPanel extends JPanel implements IFilterFrame, Do
         else{
             System.out.println("Unknown Document in heroesCustomizationPanel!");
         }
-        
     }
 
     private void searchTextChanged() {
@@ -236,27 +246,31 @@ public class HeroesCustomizationPanel extends JPanel implements IFilterFrame, Do
             String searchEntered = searchText.getText().toLowerCase();
             searchText.setForeground(Color.BLACK);
             this.filter = searchEntered;
-            /*long tempFollowers = //Long.parseLong(followersTextField.getText());
-            if (tempFollowers >= 0){
-                followersTextField.setForeground(Color.BLACK);
-                this.followers = tempFollowers;
-                
-            }
-            else{
-                throw new Exception();
-            }
-*/
         }
         catch (Exception ex){
             searchText.setForeground(Color.RED);
         }
         try{
-            IFilterFrame f = (IFilterFrame) this;//have ISolverFrame be an abstract class instead?
-            f.filterChanged();
+            if (filter.equals("")){
+                fillHeroes();
+            }
+            else
+            {
+                filterChanged();
+            }
         }
         catch(Exception ex){
             
         }
+    }
+    
+    
+    private void fillHeroes(){
+        add(searchPanel);
+        for (int i = 0; i < heroPanelArray.length; i++){
+            add(heroPanelArray[i]);
+        }
+        repaint();
     }
 
     

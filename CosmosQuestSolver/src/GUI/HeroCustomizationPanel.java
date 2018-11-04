@@ -11,6 +11,9 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.PrintWriter;
+import javafx.scene.layout.Border;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
@@ -39,7 +42,6 @@ public class HeroCustomizationPanel extends JPanel implements ActionListener, Do
     public HeroCustomizationPanel(ISolverFrame frame, Hero hero, boolean includePrioritize){
         this.frame = frame;
         this.hero = hero;
-        
         picturePanel = new CreaturePicturePanel(hero);
         editPanel = new JPanel();
         includeCheckBox = new JCheckBox();
@@ -49,9 +51,7 @@ public class HeroCustomizationPanel extends JPanel implements ActionListener, Do
         
         LayerUI<JComponent> layerUI = new DisableUI();
         JLayer<JComponent> jlayer = new JLayer<JComponent>(picturePanel, layerUI);
-    
         add (jlayer);
-        
         setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         editPanel.setLayout(new BoxLayout(editPanel,BoxLayout.X_AXIS));
         
@@ -60,10 +60,17 @@ public class HeroCustomizationPanel extends JPanel implements ActionListener, Do
             editPanel.add(prioritizeCheckBox);
         }
         editPanel.add(levelTextField);
-        
         //add(picturePanel);
+        picturePanel.add(Box.createVerticalGlue());
         add(editPanel);
+        //add(editPanel);
+        javax.swing.border.Border blackline = BorderFactory.createLineBorder(Color.black);
         
+        picturePanel.setBorder(blackline);
+        
+        editPanel.setMaximumSize(new Dimension(AssetPanel.CREATURE_PICTURE_SIZE,25));
+        editPanel.setPreferredSize(new Dimension(AssetPanel.CREATURE_PICTURE_SIZE,25));
+        picturePanel.setMaximumSize(new Dimension(AssetPanel.CREATURE_PICTURE_SIZE,AssetPanel.CREATURE_PICTURE_SIZE));
         picturePanel.setPreferredSize(new Dimension(AssetPanel.CREATURE_PICTURE_SIZE,AssetPanel.CREATURE_PICTURE_SIZE));
         includeCheckBox.setToolTipText("Include this hero in calculations");
         prioritizeCheckBox.setToolTipText("Always have hero in formations");

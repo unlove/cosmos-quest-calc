@@ -22,8 +22,12 @@ public class TournamentGridGenerator {
     public static TournamentGrid createRandomGrid(LinkedList<Hero> sortedHeroes, long followers, int numRows, int maxCreatures){
         int numSuicideLanes = randNumSuicideLanes(numRows);
         int totalSpots = getNonSuicideSpots(numSuicideLanes,numRows,maxCreatures);
-        
         int numHeroesToUse = numHeroesToUse(totalSpots,sortedHeroes,followers);
+        
+        //System.out.println("Suicide Lanes: " + numSuicideLanes + "\n" +
+        //"Total Spots: " + totalSpots + "\n" + "Num Heroes to use: " +
+        //numHeroesToUse + "\n******************************");
+        
         LinkedList<Hero>[] heroSplit = pruneHeroes(numHeroesToUse,sortedHeroes);
         LinkedList<Hero> usedHeroes = heroSplit[0];//size = numHeroesToUse
         LinkedList<Hero> spareHeroes = heroSplit[1];
@@ -44,12 +48,16 @@ public class TournamentGridGenerator {
     
     //sacrificing some lanes to make the other lanes stronger is a common strategy in tournaments
     private static int randNumSuicideLanes(int numRows){
-        
-        if (numRows <= 2){
-            return 0;
+        switch (numRows){
+            case 1: return 0;
+            case 2: return 0;
+            case 3: return 1;
+            case 4: return 1;
+            case 5: return 2;
+            case 6: return 2;
+            case 7: return 3;
+            default: return 0;
         }
-        
-        return (int)(Math.random() * numRows * 0.65);
     }
     
     //determines how many heroes to use out of the givin list. Some heroes may be too weak compared to follower monsters

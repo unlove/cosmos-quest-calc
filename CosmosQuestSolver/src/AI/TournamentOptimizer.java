@@ -4,12 +4,10 @@
 package AI;
 
 import Formations.Creature;
-import Formations.Formation;
 import Formations.Hero;
 import Formations.TournamentGrid;
 import GUI.TournamentOptimizerFrame;
 import cosmosquestsolver.OtherThings;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -45,7 +43,6 @@ public class TournamentOptimizer extends AISolver{//if (leprechaun) delete monst
         }
         
         frame.recieveDone();
-        
     }
     
     //returns the number of grids to generate until switching to the refining stage

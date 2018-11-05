@@ -3,7 +3,6 @@
  */
 package GUI;
 
-import AI.AISolver;
 import Formations.Hero;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,13 +10,10 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.PrintWriter;
-import javafx.scene.layout.Border;
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLayer;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -64,9 +60,6 @@ public class HeroCustomizationPanel extends JPanel implements ActionListener, Do
         picturePanel.add(Box.createVerticalGlue());
         add(editPanel);
         //add(editPanel);
-        javax.swing.border.Border blackline = BorderFactory.createLineBorder(Color.black);
-        
-        picturePanel.setBorder(blackline);
         
         editPanel.setMaximumSize(new Dimension(AssetPanel.CREATURE_PICTURE_SIZE,25));
         editPanel.setPreferredSize(new Dimension(AssetPanel.CREATURE_PICTURE_SIZE,25));

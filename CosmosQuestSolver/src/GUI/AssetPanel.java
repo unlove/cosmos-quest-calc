@@ -3,9 +3,7 @@
  */
 package GUI;
 
-import AI.AISolver;
 import Formations.Formation;
-import AI.QuestSolver;
 import Formations.Hero;
 import cosmosquestsolver.OtherThings;
 import java.awt.Color;
@@ -19,7 +17,6 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;

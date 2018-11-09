@@ -486,6 +486,7 @@ public class CreatureFactory {
         addHero("Ascended Rigr",new Hero(Creature.Element.EARTH,99,141,Hero.Rarity.ASCENDED,86,new Purity(null,3)));
         addHero("Ascended Dagda",new Hero(Creature.Element.AIR,107,135,Hero.Rarity.ASCENDED,92,new Purity(null,3)));
         addHero("Ascended Bavah",new Hero(Creature.Element.WATER,122,122,Hero.Rarity.ASCENDED,100,new ScaleableStatBoost(null,1,1,null,6.58)));
+        addHero("Ascended Defile",new Hero(Creature.Element.FIRE,114,126,Hero.Rarity.ASCENDED,130,new BloodBomb(null,150)));
         
         //quest heroes
         addHero("Valor",new Hero(Creature.Element.AIR,10,20,Hero.Rarity.COMMON,3,new StatBoost(null,0,1,Creature.Element.AIR)));
